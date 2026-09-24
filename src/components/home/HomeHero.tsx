@@ -40,14 +40,6 @@ export function HomeHero() {
         height={120}
         className="pointer-events-none absolute right-[24%] top-[14%] hidden w-10 animate-float opacity-90 lg:block"
       />
-      <img
-        src="/images/home/shape-triangle.png"
-        alt=""
-        aria-hidden="true"
-        width={146}
-        height={160}
-        className="pointer-events-none absolute bottom-[10%] left-[20%] hidden w-10 animate-float-slow opacity-90 md:block"
-      />
 
       <div className="mx-auto w-full max-w-[1320px] px-6 py-24 lg:px-10">
         <div className="max-w-3xl">
