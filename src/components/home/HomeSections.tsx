@@ -38,7 +38,7 @@ export function ClientLogos() {
 export function FeaturesIntro() {
   return (
     <section className="overflow-hidden bg-white py-20 lg:py-28">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-6 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-[1140px] items-center gap-10 px-6 lg:grid-cols-[1.25fr_0.75fr]">
         <ScrollReveal>
           <Eyebrow>Features</Eyebrow>
           <SectionTitle tone="black">Pushing the Boundaries of What&rsquo;s Possible In The Virtual Realm</SectionTitle>
