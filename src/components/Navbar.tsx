@@ -50,13 +50,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 bg-white transition-shadow duration-500 ease-premium',
-        scrolled ? 'shadow-[0_8px_30px_-12px_rgba(52,63,90,0.25)]' : 'shadow-none',
+        'sticky top-0 z-50 bg-[linear-gradient(90deg,#161B22_0%,#1E232B_55%,#2A2F37_100%)] transition-shadow duration-500 ease-premium',
+        scrolled ? 'shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)]' : 'shadow-none',
       )}
     >
       <nav aria-label="Primary" className="mx-auto flex h-24 max-w-[1140px] items-center justify-between px-6">
         <Link to="/" aria-label="CALEBrated Virtual Services, home">
-          <BrandLogo layout="stacked" tone="light" />
+          <BrandLogo />
         </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">
@@ -68,7 +68,7 @@ export function Navbar() {
                 className={({ isActive }) =>
                   cn(
                     'group relative py-2 font-display text-[15px] uppercase transition-colors duration-300',
-                    isActive ? 'text-orange' : 'text-navy hover:text-orange',
+                    isActive ? 'text-orange' : 'text-white/85 hover:text-orange',
                   )
                 }
               >
@@ -104,7 +104,7 @@ export function Navbar() {
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
-          className="text-navy lg:hidden"
+          className="text-white lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -120,7 +120,7 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-gray-100 bg-white lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-[#1B2027] lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
               {NAV_LINKS.map((link) => (
@@ -132,7 +132,7 @@ export function Navbar() {
                     className={({ isActive }) =>
                       cn(
                         'block border-b py-3 font-display text-base uppercase',
-                        isActive ? 'border-orange text-orange' : 'border-gray-100 text-navy',
+                        isActive ? 'border-orange text-orange' : 'border-white/10 text-white/90',
                       )
                     }
                   >

@@ -8,34 +8,64 @@ interface BrandLogoProps {
   tagline?: boolean
 }
 
+const TAGLINE = 'VIRTUAL SERVICES'.split('')
+
+function JustifiedTagline({ className }: { className?: string }) {
+  return (
+    <span aria-hidden="true" className={cn('flex w-full justify-between font-display font-medium', className)}>
+      {TAGLINE.map((char, i) => (
+        <span key={i} className={char === ' ' ? 'w-[0.4em]' : undefined}>
+          {char === ' ' ? '' : char}
+        </span>
+      ))}
+    </span>
+  )
+}
+
 export function BrandLogo({ className, size = 'sm', tone = 'dark', layout = 'inline', tagline = true }: BrandLogoProps) {
   const large = size === 'lg'
-  const stacked = layout === 'stacked'
+  const rated = tone === 'dark' ? 'text-white' : 'text-[#555]'
+  const taglineTone = tone === 'dark' ? 'text-muted' : 'text-[#555]'
+
+  if (layout === 'stacked') {
+    return (
+      <span className={cn('inline-flex flex-col items-center gap-1.5', className)}>
+        <img
+          src="/brand/calebrated-mark.png"
+          srcSet="/brand/calebrated-mark.png 1x, /brand/calebrated-mark@2x.png 2x"
+          alt=""
+          width={large ? 64 : 41}
+          height={large ? 56 : 36}
+          className={cn('w-auto', large ? 'h-16' : 'h-11')}
+        />
+        <span className="inline-flex flex-col items-stretch leading-none">
+          <span className={cn('font-display font-bold tracking-tight', large ? 'text-2xl' : 'text-lg')}>
+            <span className="text-orange">CALEB</span>
+            <span className={rated}>rated</span>
+          </span>
+          {tagline && <JustifiedTagline className={cn('mt-1.5', large ? 'text-[9px]' : 'text-[7px]', taglineTone)} />}
+        </span>
+      </span>
+    )
+  }
+
   return (
-    <span className={cn('inline-flex', stacked ? 'flex-col items-center gap-1.5' : 'items-center gap-3', className)}>
+    <span className={cn('inline-flex items-center', large ? 'gap-4' : 'gap-3', className)}>
       <img
         src="/brand/calebrated-mark.png"
         srcSet="/brand/calebrated-mark.png 1x, /brand/calebrated-mark@2x.png 2x"
         alt=""
-        width={large ? 64 : 41}
-        height={large ? 56 : 36}
-        className={cn('w-auto', stacked ? (large ? 'h-16' : 'h-11') : large ? 'h-12' : 'h-9')}
+        width={large ? 64 : 50}
+        height={large ? 56 : 44}
+        className={cn('w-auto', large ? 'h-14' : 'h-11')}
       />
-      <span className={cn('flex flex-col leading-none', stacked && 'items-center')}>
-        <span className={cn('font-display font-bold tracking-tight', large ? 'text-2xl' : stacked ? 'text-lg' : 'text-xl')}>
+      <span className="inline-flex flex-col items-stretch leading-none">
+        <span className={cn('font-display font-bold tracking-tight', large ? 'text-[32px]' : 'text-[26px]')}>
           <span className="text-orange">CALEB</span>
-          <span className={tone === 'dark' ? 'text-white' : 'text-[#555]'}>rated</span>
+          <span className={rated}>rated</span>
         </span>
         {tagline && (
-          <span
-            className={cn(
-              'mt-1 font-display font-medium uppercase',
-              large ? 'text-[9px] tracking-[0.32em]' : 'text-[7px] tracking-[0.3em]',
-              tone === 'dark' ? 'text-white/70' : 'text-[#555]',
-            )}
-          >
-            Virtual Services
-          </span>
+          <JustifiedTagline className={cn(large ? 'mt-2 text-[13px]' : 'mt-1.5 text-[11px]', taglineTone)} />
         )}
       </span>
     </span>
