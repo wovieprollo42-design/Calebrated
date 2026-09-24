@@ -1,8 +1,9 @@
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ArrowDown } from 'lucide-react'
 import { type MouseEvent } from 'react'
-import { AngularFrame, GridOverlay, NoiseOverlay, PlusAccent, SpotlightGlow } from './BrandGeometry'
+import { AngularFrame, GridOverlay, PlusAccent } from './BrandGeometry'
 import { MagneticButton } from './MagneticButton'
+import { AmbientBackground } from './motion/AmbientBackground'
 
 export function Hero() {
   const reduceMotion = useReducedMotion()
@@ -28,18 +29,7 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-28"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 70% 20%, rgba(255,90,0,0.14) 0%, rgba(10,10,10,0) 60%), linear-gradient(180deg, #0A0A0A 0%, #111214 100%)',
-        }}
-      />
-      <GridOverlay className="opacity-60" />
-      <NoiseOverlay opacity={0.04} />
-
-      <SpotlightGlow className="right-[-10%] top-[-10%] h-[520px] w-[520px] opacity-70" />
+      <AmbientBackground intensity="high" scrim={0.2} />
 
       <motion.div style={{ x: frameX, y: frameY }} className="absolute right-[6%] top-[18%] hidden lg:block">
         <AngularFrame size={360} strokeWidth={1} color="rgba(255,90,0,0.55)" delay={0.2} />

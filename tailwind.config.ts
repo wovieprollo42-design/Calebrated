@@ -42,6 +42,31 @@ export default {
       transitionTimingFunction: {
         premium: 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translate3d(0, 0, 0)' },
+          to: { transform: 'translate3d(-50%, 0, 0)' },
+        },
+        'marquee-reverse': {
+          from: { transform: 'translate3d(-50%, 0, 0)' },
+          to: { transform: 'translate3d(0, 0, 0)' },
+        },
+        drift: {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '33%': { transform: 'translate3d(6%, -4%, 0) scale(1.08)' },
+          '66%': { transform: 'translate3d(-4%, 5%, 0) scale(0.96)' },
+        },
+        'drift-slow': {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '50%': { transform: 'translate3d(-8%, 6%, 0) scale(1.12)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee var(--marquee-duration, 30s) linear infinite',
+        'marquee-reverse': 'marquee-reverse var(--marquee-duration, 30s) linear infinite',
+        drift: 'drift 24s ease-in-out infinite',
+        'drift-slow': 'drift-slow 34s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

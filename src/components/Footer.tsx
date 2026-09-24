@@ -1,4 +1,6 @@
+import { ArrowUpRight } from 'lucide-react'
 import { services } from '@/data/services'
+import { ScrollReveal } from './ScrollReveal'
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -11,8 +13,26 @@ const NAV_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-ink pt-20">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-ink">
+      <ScrollReveal direction="none" amount={0.4}>
+        <a
+          href="#contact"
+          className="group flex items-center justify-between border-b border-white/10 bg-soft px-6 py-8 transition-colors duration-500 ease-premium hover:bg-orange lg:px-12"
+        >
+          <span className="mx-auto flex w-full max-w-7xl items-center justify-between">
+            <span className="font-display text-3xl font-semibold text-white transition-colors duration-500 group-hover:text-ink sm:text-4xl lg:text-5xl">
+              Let&rsquo;s Talk
+            </span>
+            <ArrowUpRight
+              size={40}
+              strokeWidth={1.5}
+              className="text-orange transition-all duration-500 ease-premium group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-ink"
+            />
+          </span>
+        </a>
+      </ScrollReveal>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-20 lg:px-12">
         <div className="grid grid-cols-1 gap-14 pb-16 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <img src="/calebrated-logo.png" alt="CALEBrated Virtual Services" className="h-16 w-16 object-contain" />

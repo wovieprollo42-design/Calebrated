@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
 import { services } from '@/data/services'
 import { ScrollReveal } from './ScrollReveal'
 import { GridOverlay } from './BrandGeometry'
+import { SnapCarousel } from './ui/SnapCarousel'
 
 export function Services() {
   const [active, setActive] = useState(0)
-  const [openMobile, setOpenMobile] = useState<number | null>(0)
 
   return (
     <section id="services" className="relative bg-ink py-28 lg:py-36">
@@ -94,41 +93,26 @@ export function Services() {
           </div>
         </div>
 
-        {/* Mobile accordion */}
-        <div className="mt-14 border-t border-white/10 lg:hidden">
-          {services.map((service, i) => {
-            const isOpen = openMobile === i
-            return (
-              <div key={service.title} className="border-b border-white/10">
-                <button
-                  type="button"
-                  onClick={() => setOpenMobile(isOpen ? null : i)}
-                  className="flex w-full items-center gap-4 py-5 text-left"
-                  aria-expanded={isOpen}
+        {/* Mobile / tablet snap cards */}
+        <div className="mt-14 lg:hidden">
+          <SnapCarousel step={296}>
+            {services.map((service, i) => (
+              <ScrollReveal key={service.title} delay={i * 0.06} direction="right" className="w-[272px] shrink-0 snap-start">
+                <div
+                  className="relative flex aspect-[4/5] flex-col justify-end overflow-hidden p-7"
+                  style={{
+                    clipPath: 'polygon(0% 0%, 92% 0%, 100% 100%, 8% 100%)',
+                    background: 'linear-gradient(160deg, #25282C 0%, #0A0A0A 100%)',
+                  }}
                 >
-                  <span className="font-display text-sm font-semibold text-orange">{service.index}</span>
-                  <span className="font-display text-lg font-medium text-white">{service.title}</span>
-                  <ChevronDown
-                    size={18}
-                    className={`ml-auto text-muted transition-transform duration-300 ${isOpen ? 'rotate-180 text-orange' : ''}`}
-                  />
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-6 pr-8 text-sm leading-relaxed text-muted">{service.description}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )
-          })}
+                  <GridOverlay />
+                  <span className="relative font-display text-6xl font-semibold text-orange/25">{service.index}</span>
+                  <h3 className="relative mt-3 font-display text-xl font-semibold text-white">{service.title}</h3>
+                  <p className="relative mt-3 text-sm leading-relaxed text-muted">{service.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </SnapCarousel>
         </div>
       </div>
     </section>
