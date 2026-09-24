@@ -9,7 +9,7 @@ export function BookingBadge() {
       initial={{ opacity: 0, y: reduceMotion ? 0 : 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed bottom-5 right-5 z-40"
+      className="fixed bottom-24 right-5 z-40 sm:right-8"
     >
       <a
         href={CALENDLY_URL}
