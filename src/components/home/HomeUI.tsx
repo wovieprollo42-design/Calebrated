@@ -57,7 +57,7 @@ export function OutlineButton({ to, children, className }: { to: string; childre
       to={to}
       className={cn(
         buttonBase,
-        'border border-orange px-16 py-3 text-orange hover:bg-orange hover:text-white',
+        'w-full border border-orange px-16 py-3 text-orange sm:w-auto hover:bg-orange hover:text-white',
         className,
       )}
     >
@@ -72,7 +72,7 @@ export function SolidButton({ to, children, className }: { to: string; children:
       to={to}
       className={cn(
         buttonBase,
-        'bg-orange px-14 py-3.5 text-white shadow-[0_10px_30px_-10px_rgba(255,84,0,0.6)] hover:-translate-y-0.5 hover:bg-orange-deep',
+        'w-full bg-orange px-14 py-3.5 text-white sm:w-auto shadow-[0_10px_30px_-10px_rgba(255,84,0,0.6)] hover:-translate-y-0.5 hover:bg-orange-deep',
         className,
       )}
     >

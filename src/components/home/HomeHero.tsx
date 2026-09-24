@@ -31,6 +31,8 @@ export function HomeHero() {
             'linear-gradient(90deg, rgba(24,31,38,0.94) 0%, rgba(33,41,49,0.84) 42%, rgba(40,48,54,0.35) 78%, rgba(40,48,54,0.2) 100%)',
         }}
       />
+      {/* On phones the text spans the full width, over the brightest part of the photo. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#181F26]/55 sm:hidden" />
 
       <img
         src="/images/home/shape-square.png"
@@ -41,9 +43,9 @@ export function HomeHero() {
         className="pointer-events-none absolute right-[24%] top-[14%] hidden w-10 animate-float opacity-90 lg:block"
       />
 
-      <div className="mx-auto w-full max-w-[1320px] px-6 py-24 lg:px-10">
+      <div className="mx-auto w-full max-w-[1320px] px-6 py-16 sm:py-24 lg:px-10">
         <div className="max-w-3xl">
-          <motion.p {...rise(0.1)} className="font-display font-bold leading-none tracking-tight">
+          <motion.p {...rise(0.1)} className="hidden font-display font-bold leading-none tracking-tight sm:block">
             <span className="text-3xl text-orange sm:text-4xl">CALEB</span>
             <span className="text-3xl text-white sm:text-4xl">rated</span>
             <span className="mt-1 block text-[10px] font-medium uppercase tracking-[0.34em] text-white/80">
@@ -53,21 +55,21 @@ export function HomeHero() {
 
           <motion.h1
             {...rise(0.25)}
-            className="mt-10 font-display text-[2.4rem] font-bold uppercase leading-[1.12] text-white sm:text-5xl lg:text-[4.2rem]"
+            className="font-display text-[clamp(1.75rem,8vw,2.4rem)] font-bold uppercase leading-[1.15] text-white sm:mt-10 sm:text-5xl lg:text-[4.2rem]"
           >
             Are You Ready To <span className="block text-orange">Defy Your Limits?</span>
           </motion.h1>
 
-          <motion.p {...rise(0.45)} className="mt-8 max-w-2xl text-[17px] font-medium leading-relaxed text-white/90">
+          <motion.p {...rise(0.45)} className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-white/90 sm:mt-8 sm:text-[17px]">
             Unleash your full potential with our cutting-edge strategies and innovative solutions to empower you to
             defy limits, break barriers, and achieve remarkable success. Join us on this exhilarating journey to
             embrace the extraordinary and unlock unprecedented opportunities.
           </motion.p>
 
-          <motion.div {...rise(0.6)} className="mt-10">
+          <motion.div {...rise(0.6)} className="mt-8 sm:mt-10">
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-3 rounded-md bg-orange px-10 py-4 font-display text-[15px] font-medium text-white shadow-[0_12px_30px_-8px_rgba(255,84,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:bg-orange-deep"
+              className="group flex w-full items-center justify-center gap-3 rounded-md bg-orange px-10 py-4 sm:inline-flex sm:w-auto font-display text-[15px] font-medium text-white shadow-[0_12px_30px_-8px_rgba(255,84,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:bg-orange-deep"
             >
               Get Started
               <ChevronRight size={16} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1" />

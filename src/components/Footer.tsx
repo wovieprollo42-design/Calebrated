@@ -22,7 +22,7 @@ const COMPANY_LINKS = [
   { label: 'Contact', to: '/contact' },
 ]
 
-const linkClass = 'text-[17px] text-white/90 transition-colors duration-300 hover:text-orange'
+const linkClass = 'text-base text-white/90 sm:text-[17px] transition-colors duration-300 hover:text-orange'
 
 export function Footer() {
   return (
@@ -30,9 +30,9 @@ export function Footer() {
       className="text-white"
       style={{ background: 'linear-gradient(90deg, #0F131B 0%, #151A24 45%, #232A3B 100%)' }}
     >
-      <div className="mx-auto max-w-[1140px] px-6 pb-10 pt-20 lg:pt-28">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_0.9fr]">
-          <div>
+      <div className="mx-auto max-w-[1140px] px-6 pb-24 pt-16 sm:pt-20 lg:pb-10 lg:pt-28">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[1.5fr_1fr_1fr_0.9fr]">
+          <div className="col-span-2 md:col-span-1">
             <Link to="/" aria-label="CALEBrated Virtual Services, home" className="inline-block">
               <BrandLogo layout="stacked" size="lg" />
             </Link>
@@ -59,7 +59,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h2 className="font-display text-xl font-medium">Services</h2>
             <ul className="mt-4 space-y-2">
               {homeServices.map((service) => (
@@ -109,7 +109,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/15 pt-10 text-center">
+        <div className="mt-12 border-t border-white/15 pt-8 text-center sm:mt-16 sm:pt-10">
           <p className="text-[15px] text-white/90">
             Copyright &copy; {new Date().getFullYear()} All Rights Reserved. CALEBrated Virtual Services
           </p>

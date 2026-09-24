@@ -17,25 +17,25 @@ import { CheckList, Eyebrow, OutlineButton, SectionTitle, SolidButton } from './
 
 export function PartnerLogos() {
   return (
-    <section aria-labelledby="partners-title" className="relative overflow-hidden bg-white py-16 lg:py-20">
-      <ScrollReveal className="mx-auto flex max-w-[1140px] items-center gap-5 px-6">
+    <section aria-labelledby="partners-title" className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20">
+      <ScrollReveal className="mx-auto flex max-w-[1140px] items-center gap-3 px-6 sm:gap-5">
         <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200" />
         <h2
           id="partners-title"
-          className="text-center font-display text-sm font-medium uppercase tracking-[0.22em] text-gray-500 sm:text-[15px]"
+          className="whitespace-nowrap text-center font-display text-xs font-medium uppercase tracking-[0.16em] text-gray-500 sm:text-[15px] sm:tracking-[0.22em]"
         >
           Trusted by growing businesses
         </h2>
         <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200" />
       </ScrollReveal>
 
-      <div className="mt-12 space-y-6 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+      <div className="mt-8 space-y-3 sm:mt-12 sm:space-y-6 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         {partnerLogoRows.map((row, r) => (
           <Marquee key={r} direction={r % 2 === 0 ? 'left' : 'right'} duration={r % 2 === 0 ? 55 : 62} pauseOnHover className="py-3">
             {[...row, ...row].map((partner, i) => (
               <div
                 key={partner.src + i}
-                className="group mr-6 flex h-[104px] w-[200px] shrink-0 items-center justify-center rounded-2xl bg-white px-7 ring-1 ring-gray-100 shadow-[0_14px_34px_-22px_rgba(52,63,90,0.45)] transition-all duration-500 ease-premium hover:-translate-y-1 hover:ring-orange/30 hover:shadow-[0_22px_44px_-20px_rgba(255,84,0,0.35)] sm:h-[116px] sm:w-[232px]"
+                className="group mr-4 flex h-[84px] w-[156px] shrink-0 items-center justify-center rounded-2xl bg-white px-5 ring-1 ring-gray-100 shadow-[0_14px_34px_-22px_rgba(52,63,90,0.45)] transition-all duration-500 ease-premium hover:-translate-y-1 hover:ring-orange/30 hover:shadow-[0_22px_44px_-20px_rgba(255,84,0,0.35)] sm:mr-6 sm:h-[116px] sm:w-[232px] sm:px-7"
               >
                 <img
                   src={partner.src}
@@ -44,7 +44,7 @@ export function PartnerLogos() {
                   height={partner.height}
                   loading="lazy"
                   draggable={false}
-                  className="max-h-[58px] w-auto max-w-full object-contain transition-transform duration-500 ease-premium group-hover:scale-105 sm:max-h-[66px]"
+                  className="max-h-[46px] w-auto max-w-full object-contain transition-transform duration-500 ease-premium group-hover:scale-105 sm:max-h-[66px]"
                 />
               </div>
             ))}
@@ -57,7 +57,7 @@ export function PartnerLogos() {
 
 export function FeaturesIntro() {
   return (
-    <section className="overflow-hidden bg-white py-20 lg:py-28">
+    <section className="overflow-hidden bg-white py-14 sm:py-20 lg:py-28">
       <div className="mx-auto grid max-w-[1140px] items-center gap-10 px-6 lg:grid-cols-[1.25fr_0.75fr]">
         <ScrollReveal>
           <Eyebrow>Features</Eyebrow>
@@ -85,8 +85,8 @@ export function FeaturesIntro() {
 
 export function FeatureCards() {
   return (
-    <section className="bg-white pb-20 lg:pb-28">
-      <div className="mx-auto grid max-w-[1380px] gap-8 px-6 md:grid-cols-2">
+    <section className="bg-white pb-14 sm:pb-20 lg:pb-28">
+      <div className="mx-auto grid max-w-[1380px] gap-6 px-6 sm:gap-8 md:grid-cols-2">
         {featureCards.map((card, i) => (
           <ScrollReveal key={card.title} delay={(i % 2) * 0.1} className="h-full">
             <article className="group h-full rounded-2xl bg-white p-6 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.18)] transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(52,63,90,0.28)] sm:p-8">
@@ -100,7 +100,7 @@ export function FeatureCards() {
                   className="aspect-[767/330] w-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
                 />
               </div>
-              <h3 className="mt-7 font-display text-2xl font-semibold text-black lg:text-[26px]">{card.title}</h3>
+              <h3 className="mt-5 font-display text-[22px] font-semibold text-black sm:mt-7 sm:text-2xl lg:text-[26px]">{card.title}</h3>
               <p className="mt-2 text-[15px] leading-relaxed text-black/75">{card.description}</p>
             </article>
           </ScrollReveal>
@@ -112,8 +112,8 @@ export function FeatureCards() {
 
 export function WebsiteFeature() {
   return (
-    <section className="overflow-hidden bg-white py-20 lg:py-28">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-6 lg:grid-cols-2">
+    <section className="overflow-hidden bg-white py-14 sm:py-20 lg:py-28">
+      <div className="mx-auto grid max-w-[1140px] items-center gap-10 sm:gap-14 px-6 lg:grid-cols-2">
         <ScrollReveal direction="left" className="order-2 lg:order-1">
           <img
             src="/images/home/website.png"
@@ -143,28 +143,32 @@ export function WebsiteFeature() {
 
 export function ServiceGrid() {
   return (
-    <section aria-labelledby="home-services-title" className="bg-white pb-24 lg:pb-32">
+    <section aria-labelledby="home-services-title" className="bg-white pb-16 sm:pb-24 lg:pb-32">
       <h2 id="home-services-title" className="sr-only">
         Our Services
       </h2>
-      <div className="mx-auto flex max-w-[1380px] flex-wrap justify-center gap-8 px-6">
+      <div className="mx-auto flex max-w-[1380px] flex-wrap justify-center gap-4 px-6 sm:gap-8">
         {homeServices.map((service, i) => (
           <ScrollReveal
             key={service.title}
             delay={(i % 3) * 0.08}
             className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]"
           >
-            <article className="group h-full rounded-2xl bg-white p-8 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.16)] transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(255,84,0,0.25)]">
+            <article className="group flex h-full items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.16)] sm:block sm:p-8 transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(255,84,0,0.25)]">
               <img
                 src={service.icon}
                 alt=""
                 width={160}
                 height={160}
                 loading="lazy"
-                className="h-20 w-20 transition-transform duration-500 ease-premium group-hover:-rotate-6 group-hover:scale-110"
+                className="h-14 w-14 shrink-0 transition-transform sm:h-20 sm:w-20 duration-500 ease-premium group-hover:-rotate-6 group-hover:scale-110"
               />
-              <h3 className="mt-6 font-display text-[22px] font-medium text-navy">{service.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-gray-600">{service.description}</p>
+              <div>
+                <h3 className="font-display text-lg font-medium leading-snug text-navy sm:mt-6 sm:text-[22px]">
+                  {service.title}
+                </h3>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-gray-600 sm:mt-2 sm:text-base">{service.description}</p>
+              </div>
             </article>
           </ScrollReveal>
         ))}
@@ -202,7 +206,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 export function WorldwideStats() {
   return (
     <section
-      className="relative bg-white bg-contain bg-center bg-no-repeat py-24 lg:py-32"
+      className="relative bg-white bg-contain bg-center bg-no-repeat py-16 sm:py-24 lg:py-32"
       style={{ backgroundImage: 'url(/images/home/map.jpg)' }}
     >
       <div className="mx-auto max-w-5xl px-6 text-center">
@@ -213,11 +217,11 @@ export function WorldwideStats() {
             Enhance your business operations and streamline your workflow. Connect with us.
           </p>
         </ScrollReveal>
-        <dl className="mt-16 grid grid-cols-2 gap-y-12 lg:grid-cols-4">
+        <dl className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:mt-16 sm:gap-y-12 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <ScrollReveal key={stat.label} delay={i * 0.08} className="flex flex-col items-center">
-              <dt className="order-2 mt-2 font-display text-lg text-navy lg:text-xl">{stat.label}</dt>
-              <dd className="font-display text-6xl font-light text-orange lg:text-7xl">
+              <dt className="order-2 mt-2 font-display text-[15px] text-navy sm:text-lg lg:text-xl">{stat.label}</dt>
+              <dd className="font-display text-5xl font-light text-orange sm:text-6xl lg:text-7xl">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </dd>
             </ScrollReveal>
@@ -230,8 +234,8 @@ export function WorldwideStats() {
 
 export function CoreValues() {
   return (
-    <section className="bg-[#F8F9FB] py-24 lg:py-32">
-      <div className="mx-auto grid max-w-[1380px] gap-16 px-6 lg:grid-cols-2">
+    <section className="bg-[#F8F9FB] py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto grid max-w-[1380px] gap-12 px-6 sm:gap-16 lg:grid-cols-2">
         <ScrollReveal>
           <Eyebrow>Why Us</Eyebrow>
           <SectionTitle className="lg:text-[2.75rem]">
@@ -246,7 +250,7 @@ export function CoreValues() {
           </SolidButton>
         </ScrollReveal>
 
-        <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2">
+        <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 sm:gap-y-12">
           {coreValues.map((value, i) => (
             <ScrollReveal key={value.title} delay={(i % 2) * 0.1 + Math.floor(i / 2) * 0.1}>
               <img src={value.icon} alt="" width={112} height={112} loading="lazy" className="h-14 w-14 rounded-md" />
@@ -264,12 +268,12 @@ export function WhyChooseUs() {
   const half = Math.ceil(whyChooseUs.length / 2)
   return (
     <section
-      className="py-24 lg:py-28"
+      className="py-16 sm:py-24 lg:py-28"
       style={{ background: 'linear-gradient(90deg, #0B0D12 0%, #151A24 35%, #232A3B 70%, #323D56 100%)' }}
     >
       <div className="mx-auto max-w-[1140px] px-6">
         <ScrollReveal>
-          <h2 className="font-display text-[2.25rem] font-semibold uppercase text-white lg:text-[2.75rem]">
+          <h2 className="font-display text-[2rem] font-semibold uppercase text-white sm:text-[2.25rem] lg:text-[2.75rem]">
             Why Choose Us?
           </h2>
           <p className="mt-6 max-w-5xl text-[17px] font-medium leading-relaxed text-white">
@@ -279,7 +283,7 @@ export function WhyChooseUs() {
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.15}>
-          <div className="mt-12 grid gap-x-12 gap-y-3 md:grid-cols-2">
+          <div className="mt-10 grid gap-x-12 gap-y-3 sm:mt-12 md:grid-cols-2">
             <CheckList items={whyChooseUs.slice(0, half)} tone="light" />
             <CheckList items={whyChooseUs.slice(half)} tone="light" />
           </div>
@@ -297,7 +301,7 @@ export function Appointments() {
   const load = useInView(ref, { once: true, margin: '400px 0px' })
 
   return (
-    <section id="appointments" className="bg-white py-24 lg:py-28">
+    <section id="appointments" className="bg-white py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-[1140px] px-6">
         <ScrollReveal className="text-center">
           <Eyebrow>Appointments</Eyebrow>
@@ -343,8 +347,8 @@ export function ConnectWithUs() {
   }
 
   return (
-    <section className="overflow-hidden bg-[#FAFBFC] py-24 lg:py-32">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-6 lg:grid-cols-2">
+    <section className="overflow-hidden bg-[#FAFBFC] py-16 sm:py-24 lg:py-32">
+      <div className="mx-auto grid max-w-[1140px] items-center gap-10 px-6 sm:gap-14 lg:grid-cols-2">
         <ScrollReveal direction="left">
           <img
             src="/images/home/connect.png"
@@ -382,7 +386,7 @@ export function ConnectWithUs() {
                 type="email"
                 required
                 placeholder="sample@mail.com"
-                className="h-12 flex-1 rounded-md border border-gray-200 bg-white px-4 text-[15px] text-navy placeholder:text-gray-400 focus:border-orange focus:outline-none sm:rounded-r-none"
+                className="h-12 w-full rounded-md border sm:w-auto sm:flex-1 border-gray-200 bg-white px-4 text-[15px] text-navy placeholder:text-gray-400 focus:border-orange focus:outline-none sm:rounded-r-none"
               />
               <button
                 type="submit"
