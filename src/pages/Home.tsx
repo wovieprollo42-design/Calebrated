@@ -1,10 +1,16 @@
-import { About } from '@/components/About'
-import { FinalCTA } from '@/components/FinalCTA'
-import { Hero } from '@/components/Hero'
-import { PremiumStatement } from '@/components/PremiumStatement'
-import { ProofStrip } from '@/components/ProofStrip'
-import { Testimonials } from '@/components/Testimonials'
-import { ServicesPreview } from '@/components/home/ServicesPreview'
+import { HomeHero } from '@/components/home/HomeHero'
+import {
+  Appointments,
+  ClientLogos,
+  ConnectWithUs,
+  CoreValues,
+  FeatureCards,
+  FeaturesIntro,
+  ServiceGrid,
+  WebsiteFeature,
+  WhyChooseUs,
+  WorldwideStats,
+} from '@/components/home/HomeSections'
 import { homeJsonLd } from '@/lib/seo'
 import { usePageMeta } from '@/lib/usePageMeta'
 
@@ -20,13 +26,17 @@ export default function Home() {
 
   return (
     <>
-      <Hero />
-      <ProofStrip />
-      <PremiumStatement />
-      <About teaser />
-      <ServicesPreview />
-      <Testimonials />
-      <FinalCTA />
+      <HomeHero />
+      <ClientLogos />
+      <FeaturesIntro />
+      <FeatureCards />
+      <WebsiteFeature />
+      <ServiceGrid />
+      <WorldwideStats />
+      <CoreValues />
+      <WhyChooseUs />
+      <Appointments />
+      <ConnectWithUs />
     </>
   )
 }

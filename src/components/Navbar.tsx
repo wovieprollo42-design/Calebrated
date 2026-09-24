@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Mail, Menu, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { BrandLogo } from './BrandLogo'
@@ -21,7 +21,7 @@ export function Navbar() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 40)
+      setScrolled(window.scrollY > 24)
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -50,15 +50,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium',
-        scrolled
-          ? 'border-b border-white/10 bg-ink/80 backdrop-blur-md py-4'
-          : 'border-b border-transparent bg-transparent py-6',
+        'sticky top-0 z-50 bg-white transition-shadow duration-500 ease-premium',
+        scrolled ? 'shadow-[0_8px_30px_-12px_rgba(52,63,90,0.25)]' : 'shadow-none',
       )}
     >
-      <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
+      <nav aria-label="Primary" className="mx-auto flex h-24 max-w-[1140px] items-center justify-between px-6">
         <Link to="/" aria-label="CALEBrated Virtual Services, home">
-          <BrandLogo />
+          <BrandLogo layout="stacked" tone="light" />
         </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">
@@ -68,13 +66,21 @@ export function Navbar() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  cn('group relative text-sm font-medium transition-colors hover:text-white', isActive ? 'text-orange' : 'text-offwhite/85')
+                  cn(
+                    'group relative py-2 font-display text-[15px] uppercase transition-colors duration-300',
+                    isActive ? 'text-orange' : 'text-navy hover:text-orange',
+                  )
                 }
               >
                 {({ isActive }) => (
                   <>
                     {link.label}
-                    <span className={cn('absolute -bottom-1 left-0 h-px bg-orange transition-all duration-300 ease-premium group-hover:w-full', isActive ? 'w-full' : 'w-0')} />
+                    <span
+                      className={cn(
+                        'absolute bottom-0 left-0 h-0.5 bg-orange transition-all duration-300 ease-premium group-hover:w-full',
+                        isActive ? 'w-full' : 'w-0',
+                      )}
+                    />
                   </>
                 )}
               </NavLink>
@@ -85,9 +91,10 @@ export function Navbar() {
         <div className="hidden lg:block">
           <Link
             to="/contact"
-            className="relative inline-flex items-center border border-orange px-6 py-2.5 text-xs font-semibold uppercase tracking-widest2 text-orange transition-colors duration-300 hover:bg-orange hover:text-ink"
+            className="group inline-flex items-center gap-3 rounded-md border border-orange px-7 py-3 font-display text-[15px] text-orange transition-colors duration-300 hover:bg-orange hover:text-white"
           >
-            Let&rsquo;s Talk
+            Contact Us
+            <Mail size={17} className="transition-transform duration-300 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -97,10 +104,10 @@ export function Navbar() {
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
-          className="text-offwhite lg:hidden"
+          className="text-navy lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
-          {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </nav>
 
@@ -113,7 +120,7 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-ink/95 backdrop-blur-md lg:hidden"
+            className="overflow-hidden border-t border-gray-100 bg-white lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-6">
               {NAV_LINKS.map((link) => (
@@ -123,7 +130,10 @@ export function Navbar() {
                     end={link.to === '/'}
                     onClick={closeMenu}
                     className={({ isActive }) =>
-                      cn('block py-3 text-base font-medium border-b border-white/5', isActive ? 'text-orange border-orange' : 'text-offwhite/90')
+                      cn(
+                        'block border-b py-3 font-display text-base uppercase',
+                        isActive ? 'border-orange text-orange' : 'border-gray-100 text-navy',
+                      )
                     }
                   >
                     {link.label}
@@ -134,9 +144,10 @@ export function Navbar() {
                 <Link
                   to="/contact"
                   onClick={closeMenu}
-                  className="block border border-orange px-6 py-3 text-center text-xs font-semibold uppercase tracking-widest2 text-orange"
+                  className="flex items-center justify-center gap-3 rounded-md border border-orange px-6 py-3 font-display text-orange"
                 >
-                  Let&rsquo;s Talk
+                  Contact Us
+                  <Mail size={17} />
                 </Link>
               </li>
             </ul>

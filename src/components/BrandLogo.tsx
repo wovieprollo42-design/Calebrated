@@ -4,32 +4,34 @@ interface BrandLogoProps {
   className?: string
   size?: 'sm' | 'lg'
   tone?: 'dark' | 'light'
+  layout?: 'inline' | 'stacked'
   tagline?: boolean
 }
 
-export function BrandLogo({ className, size = 'sm', tone = 'dark', tagline = true }: BrandLogoProps) {
+export function BrandLogo({ className, size = 'sm', tone = 'dark', layout = 'inline', tagline = true }: BrandLogoProps) {
   const large = size === 'lg'
+  const stacked = layout === 'stacked'
   return (
-    <span className={cn('inline-flex items-center gap-3', className)}>
+    <span className={cn('inline-flex', stacked ? 'flex-col items-center gap-1.5' : 'items-center gap-3', className)}>
       <img
         src="/brand/calebrated-mark.png"
         srcSet="/brand/calebrated-mark.png 1x, /brand/calebrated-mark@2x.png 2x"
         alt=""
-        width={large ? 55 : 41}
-        height={large ? 48 : 36}
-        className={large ? 'h-12 w-auto' : 'h-9 w-auto'}
+        width={large ? 64 : 41}
+        height={large ? 56 : 36}
+        className={cn('w-auto', stacked ? (large ? 'h-16' : 'h-11') : large ? 'h-12' : 'h-9')}
       />
-      <span className="flex flex-col leading-none">
-        <span className={cn('font-display font-bold tracking-tight', large ? 'text-3xl' : 'text-xl')}>
+      <span className={cn('flex flex-col leading-none', stacked && 'items-center')}>
+        <span className={cn('font-display font-bold tracking-tight', large ? 'text-2xl' : stacked ? 'text-lg' : 'text-xl')}>
           <span className="text-orange">CALEB</span>
-          <span className={tone === 'dark' ? 'text-white' : 'text-navy'}>rated</span>
+          <span className={tone === 'dark' ? 'text-white' : 'text-[#555]'}>rated</span>
         </span>
         {tagline && (
           <span
             className={cn(
               'mt-1 font-display font-medium uppercase',
-              large ? 'text-[10px] tracking-[0.34em]' : 'text-[8px] tracking-[0.3em]',
-              tone === 'dark' ? 'text-muted' : 'text-charcoal/70',
+              large ? 'text-[9px] tracking-[0.32em]' : 'text-[7px] tracking-[0.3em]',
+              tone === 'dark' ? 'text-white/70' : 'text-[#555]',
             )}
           >
             Virtual Services

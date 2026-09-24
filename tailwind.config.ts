@@ -62,12 +62,18 @@ export default {
           '0%, 100%': { transform: 'translate3d(0, 0, 0) scale(1)' },
           '50%': { transform: 'translate3d(-8%, 6%, 0) scale(1.12)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+          '50%': { transform: 'translate3d(0, -18px, 0) rotate(6deg)' },
+        },
       },
       animation: {
         marquee: 'marquee var(--marquee-duration, 30s) linear infinite',
         'marquee-reverse': 'marquee-reverse var(--marquee-duration, 30s) linear infinite',
         drift: 'drift 24s ease-in-out infinite',
         'drift-slow': 'drift-slow 34s ease-in-out infinite',
+        float: 'float 7s ease-in-out infinite',
+        'float-slow': 'float 10s ease-in-out infinite',
       },
     },
   },

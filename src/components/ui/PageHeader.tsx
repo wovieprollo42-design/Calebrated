@@ -1,9 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { AngularFrame } from '@/components/BrandGeometry'
-import { MagneticButton } from '@/components/MagneticButton'
-import { AmbientBackground } from '@/components/motion/AmbientBackground'
+import { Link } from 'react-router-dom'
 import { EASE_PREMIUM } from '@/lib/motion'
 
 interface PageHeaderProps {
@@ -23,40 +21,56 @@ export function PageHeader({ eyebrow, title, intro, cta }: PageHeaderProps) {
   })
 
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-ink pb-20 pt-40 lg:pb-28 lg:pt-48">
-      <AmbientBackground intensity="low" scrim={0.15} />
-      <AngularFrame
-        className="right-[-4%] top-[10%] hidden lg:block"
-        size={320}
-        strokeWidth={1}
-        color="rgba(255,84,0,0.35)"
-        delay={0.3}
+    <section className="relative isolate overflow-hidden bg-[#283036] py-24 lg:py-32">
+      <motion.img
+        src="/images/home/hero.jpg"
+        alt=""
+        width={1908}
+        height={894}
+        initial={{ scale: reduceMotion ? 1 : 1.06 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.6, ease: EASE_PREMIUM }}
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-[75%_center]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(24,31,38,0.95) 0%, rgba(33,41,49,0.88) 50%, rgba(40,48,54,0.55) 100%)',
+        }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-        <motion.p {...rise(0.1)} className="text-xs font-semibold uppercase tracking-widest2 text-orange">
+      <div className="mx-auto max-w-[1140px] px-6">
+        <motion.p
+          {...rise(0.1)}
+          className="font-display text-base font-medium uppercase tracking-[0.05em] text-orange sm:text-lg"
+        >
           {eyebrow}
         </motion.p>
 
         <motion.h1
           {...rise(0.25)}
-          className="mt-5 max-w-4xl font-display text-display-lg font-semibold text-white text-balance"
+          className="mt-4 max-w-4xl font-display text-[2.25rem] font-bold leading-[1.15] text-white text-balance sm:text-5xl lg:text-[3.5rem]"
         >
           {title}
         </motion.h1>
 
         {intro && (
-          <motion.p {...rise(0.45)} className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+          <motion.p {...rise(0.45)} className="mt-6 max-w-2xl text-[17px] font-medium leading-relaxed text-white/90">
             {intro}
           </motion.p>
         )}
 
         {cta && (
           <motion.div {...rise(0.6)} className="mt-10">
-            <MagneticButton to={cta.to} variant="solid">
+            <Link
+              to={cta.to}
+              className="group inline-flex items-center gap-3 rounded-md bg-orange px-10 py-4 font-display text-[15px] font-medium text-white shadow-lg transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:bg-orange-deep"
+            >
               {cta.label}
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </MagneticButton>
+              <ChevronRight size={16} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </motion.div>
         )}
       </div>

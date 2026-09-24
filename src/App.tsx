@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { BookingBadge } from '@/components/BookingBadge'
 import { ScrollManager } from '@/components/layout/ScrollManager'
 import { usePageVariants } from '@/components/layout/PageTransition'
 import Home from '@/pages/Home'
@@ -21,7 +22,7 @@ export default function App() {
   const mainRef = useRef<HTMLElement>(null)
 
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <ScrollManager />
       <AnimatePresence mode="wait" initial={false}>
@@ -50,6 +51,7 @@ export default function App() {
         </motion.main>
       </AnimatePresence>
       <Footer />
+      <BookingBadge />
     </div>
   )
 }
