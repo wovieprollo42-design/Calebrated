@@ -3,7 +3,7 @@
 export const proofItems: string[] = [
   'Administrative Support',
   'Customer Service',
-  'Social Media Support',
+  'Social Media Management',
   'Data Entry & Management',
   'Calendar & Email Management',
   'Lead Generation',

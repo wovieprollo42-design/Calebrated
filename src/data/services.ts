@@ -9,13 +9,13 @@ export const services: Service[] = [
     index: '01',
     title: 'Administrative Support',
     description:
-      'Day-to-day admin work handled with precision — document prep, scheduling, inbox triage, and the operational upkeep that keeps a business running smoothly.',
+      'Day-to-day remote administrative support handled with precision, from document prep and scheduling to inbox triage and the operational upkeep that keeps a business running smoothly.',
   },
   {
     index: '02',
     title: 'Customer Service',
     description:
-      'Responsive, on-brand support across your customer touchpoints, so every inquiry is handled with the same care you would give it yourself.',
+      'Responsive, on-brand outsourced customer service across every touchpoint, so each inquiry is handled with the same care you would give it yourself.',
   },
   {
     index: '03',
@@ -27,7 +27,7 @@ export const services: Service[] = [
     index: '04',
     title: 'Data Entry & Management',
     description:
-      'Clean, accurate, and organized data — entered, maintained, and structured so your systems stay trustworthy as you scale.',
+      'Clean, accurate data entry and management, with records entered, maintained, and structured so your systems stay trustworthy as you scale.',
   },
   {
     index: '05',
@@ -39,18 +39,18 @@ export const services: Service[] = [
     index: '06',
     title: 'Lead Generation',
     description:
-      'Research-driven prospecting and outreach support that keeps your pipeline moving without pulling you away from closing.',
+      'Research-driven prospecting and lead generation support that keeps your pipeline moving without pulling you away from closing.',
   },
   {
     index: '07',
     title: 'CRM Support',
     description:
-      'Your CRM kept current and useful — records updated, pipelines maintained, and reporting you can actually rely on.',
+      'Your CRM kept current and useful, with records updated, pipelines maintained, and reporting you can actually rely on.',
   },
   {
     index: '08',
     title: 'Research & Reporting',
     description:
-      'Focused research and clear reporting that turns raw information into something you can act on quickly.',
+      'Focused research and reporting that turns raw information into something you can act on quickly.',
   },
 ]

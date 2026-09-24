@@ -14,7 +14,7 @@ export function FinalCTA() {
         className="absolute inset-0"
         style={{
           background:
-            'linear-gradient(115deg, #0A0A0A 0%, #0A0A0A 38%, #25282C 62%, #FF5A00 145%)',
+            'linear-gradient(115deg, #0F131B 0%, #0F131B 38%, #283036 62%, #FF5400 145%)',
         }}
       />
       <GridOverlay className="opacity-30" />
@@ -28,7 +28,7 @@ export function FinalCTA() {
         <div className="mt-6 flex flex-col items-start justify-between gap-12 lg:flex-row lg:items-end">
           <ScrollReveal delay={0.1} className="max-w-2xl">
             <h2 className="font-display text-display-lg font-semibold text-white text-balance">
-              Ready to Get More
+              Ready to Get More{' '}
               <br />
               Off Your Plate?
             </h2>
@@ -38,20 +38,15 @@ export function FinalCTA() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.25} direction="left" className="flex flex-col items-start gap-5">
-            <div className="flex flex-wrap items-center gap-5">
-              <MagneticButton href="#contact" variant="solid" className="bg-ink text-white hover:bg-charcoal">
-                Book a Free Consultation
-                <motion.span
-                  animate={reduceMotion ? {} : { x: [0, 5, 0] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <ArrowRight size={16} />
-                </motion.span>
-              </MagneticButton>
-              <MagneticButton href="#contact" variant="outline" className="border-ink/40 text-ink hover:border-ink hover:text-ink">
-                Contact Us
-              </MagneticButton>
-            </div>
+            <MagneticButton to="/contact" variant="solid">
+              Book a Free Consultation
+              <motion.span
+                animate={reduceMotion ? {} : { x: [0, 5, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <ArrowRight size={16} />
+              </motion.span>
+            </MagneticButton>
           </ScrollReveal>
         </div>
       </div>

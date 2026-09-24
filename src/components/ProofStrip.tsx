@@ -31,7 +31,7 @@ export function ProofStrip() {
               <span className="whitespace-nowrap font-display text-2xl font-medium text-offwhite/70 sm:text-3xl">
                 {item}
               </span>
-              <PlusAccent size={14} color="#FF5A00" />
+              <PlusAccent size={14} color="#FF5400" />
             </div>
           ))}
         </Marquee>

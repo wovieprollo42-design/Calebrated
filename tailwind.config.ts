@@ -7,23 +7,25 @@ export default {
     extend: {
       colors: {
         orange: {
-          DEFAULT: '#FF5A00',
-          warm: '#FF9D00',
+          DEFAULT: '#FF5400',
+          warm: '#FF8C00',
+          deep: '#C24000',
         },
-        charcoal: '#25282C',
-        ink: '#0A0A0A',
-        soft: '#111214',
-        offwhite: '#F7F7F5',
-        muted: '#A7A7A7',
+        charcoal: '#283036',
+        navy: '#343F5A',
+        ink: '#0F131B',
+        soft: '#161B25',
+        offwhite: '#F7F8FA',
+        muted: '#A4ABB8',
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
-        body: ['"Public Sans"', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+        body: ['"Red Hat Display"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'display-xl': ['clamp(3rem, 7vw, 7.5rem)', { lineHeight: '0.98', letterSpacing: '-0.03em' }],
-        'display-lg': ['clamp(2.5rem, 5.5vw, 5.5rem)', { lineHeight: '1.0', letterSpacing: '-0.02em' }],
-        'display-md': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display-xl': ['clamp(2.75rem, 6.2vw, 6.5rem)', { lineHeight: '1.04', letterSpacing: '-0.025em' }],
+        'display-lg': ['clamp(2.25rem, 5vw, 4.75rem)', { lineHeight: '1.08', letterSpacing: '-0.02em' }],
+        'display-md': ['clamp(1.875rem, 3.6vw, 3.25rem)', { lineHeight: '1.12', letterSpacing: '-0.015em' }],
       },
       letterSpacing: {
         widest2: '0.28em',

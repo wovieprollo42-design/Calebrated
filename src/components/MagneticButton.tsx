@@ -1,16 +1,22 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useRef, useState, type ReactNode, type MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+
+const MotionLink = motion(Link)
+
+const SPRING = { type: 'spring', stiffness: 150, damping: 12, mass: 0.4 } as const
 
 interface MagneticButtonProps {
   children: ReactNode
   className?: string
   href?: string
+  to?: string
   onClick?: () => void
   variant?: 'solid' | 'outline' | 'ghost'
 }
 
-export function MagneticButton({ children, className, href, onClick, variant = 'solid' }: MagneticButtonProps) {
+export function MagneticButton({ children, className, href, to, onClick, variant = 'solid' }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const reduceMotion = useReducedMotion()
@@ -36,6 +42,25 @@ export function MagneticButton({ children, className, href, onClick, variant = '
     ghost: 'text-offwhite hover:text-orange',
   }
 
+  const classes = cn(base, variants[variant], className)
+
+  if (to) {
+    return (
+      <MotionLink
+        ref={ref}
+        to={to}
+        onClick={onClick}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ x: pos.x, y: pos.y }}
+        transition={SPRING}
+        className={classes}
+      >
+        {children}
+      </MotionLink>
+    )
+  }
+
   return (
     <motion.a
       ref={ref}
@@ -44,8 +69,8 @@ export function MagneticButton({ children, className, href, onClick, variant = '
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: pos.x, y: pos.y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 12, mass: 0.4 }}
-      className={cn(base, variants[variant], className)}
+      transition={SPRING}
+      className={classes}
     >
       {children}
     </motion.a>

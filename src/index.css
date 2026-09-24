@@ -21,12 +21,12 @@ html {
 }
 
 ::selection {
-  background: #FF5A00;
-  color: #0A0A0A;
+  background: #FF5400;
+  color: #0F131B;
 }
 
 :focus-visible {
-  outline: 2px solid #FF5A00;
+  outline: 2px solid #FF5400;
   outline-offset: 3px;
 }
 
@@ -43,15 +43,15 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #0F131B;
 }
 ::-webkit-scrollbar-thumb {
-  background: #25282C;
-  border: 2px solid #0A0A0A;
+  background: #283036;
+  border: 2px solid #0F131B;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF5A00;
+  background: #FF5400;
 }
 
 .noise-overlay {

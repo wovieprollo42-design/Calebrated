@@ -1,28 +1,51 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { BrandLogo } from './BrandLogo'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Why CALEBrated', href: '#difference' },
-  { label: 'Process', href: '#process' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Process', to: '/process' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     function onScroll() {
       setScrolled(window.scrollY > 40)
     }
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  // Closing unmounts the panel, so return focus to the toggle instead of dropping it to body.
+  const closeMenu = useCallback(() => {
+    setMobileOpen(false)
+    toggleRef.current?.focus()
+  }, [])
+
+  useEffect(() => {
+    if (!mobileOpen) return
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') closeMenu()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [mobileOpen, closeMenu])
 
   return (
     <header
@@ -33,40 +56,47 @@ export function Navbar() {
           : 'border-b border-transparent bg-transparent py-6',
       )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
-        <a href="#home" className="flex items-center gap-3">
-          <img src="/calebrated-logo.png" alt="CALEBrated Virtual Services" className="h-10 w-10 object-contain" />
-          <span className="hidden font-display text-lg font-semibold tracking-tight text-offwhite sm:block">
-            CALEB<span className="text-orange">rated</span>
-          </span>
-        </a>
+      <nav aria-label="Primary" className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-12">
+        <Link to="/" aria-label="CALEBrated Virtual Services, home">
+          <BrandLogo />
+        </Link>
 
         <ul className="hidden items-center gap-9 lg:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
-                className="group relative text-sm font-medium text-offwhite/85 transition-colors hover:text-white"
+              <NavLink
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  cn('group relative text-sm font-medium transition-colors hover:text-white', isActive ? 'text-orange' : 'text-offwhite/85')
+                }
               >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-orange transition-all duration-300 ease-premium group-hover:w-full" />
-              </a>
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    <span className={cn('absolute -bottom-1 left-0 h-px bg-orange transition-all duration-300 ease-premium group-hover:w-full', isActive ? 'w-full' : 'w-0')} />
+                  </>
+                )}
+              </NavLink>
             </li>
           ))}
         </ul>
 
         <div className="hidden lg:block">
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="relative inline-flex items-center border border-orange px-6 py-2.5 text-xs font-semibold uppercase tracking-widest2 text-orange transition-colors duration-300 hover:bg-orange hover:text-ink"
           >
             Let&rsquo;s Talk
-          </a>
+          </Link>
         </div>
 
         <button
+          ref={toggleRef}
           type="button"
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           className="text-offwhite lg:hidden"
           onClick={() => setMobileOpen((v) => !v)}
         >
@@ -76,7 +106,9 @@ export function Navbar() {
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <motion.nav
+            id="mobile-navigation"
+            aria-label="Mobile"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -86,26 +118,29 @@ export function Navbar() {
             <ul className="flex flex-col gap-1 px-6 py-6">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-base font-medium text-offwhite/90 border-b border-white/5"
+                  <NavLink
+                    to={link.to}
+                    end={link.to === '/'}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      cn('block py-3 text-base font-medium border-b border-white/5', isActive ? 'text-orange border-orange' : 'text-offwhite/90')
+                    }
                   >
                     {link.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
               <li className="pt-4">
-                <a
-                  href="#contact"
-                  onClick={() => setMobileOpen(false)}
+                <Link
+                  to="/contact"
+                  onClick={closeMenu}
                   className="block border border-orange px-6 py-3 text-center text-xs font-semibold uppercase tracking-widest2 text-orange"
                 >
                   Let&rsquo;s Talk
-                </a>
+                </Link>
               </li>
             </ul>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

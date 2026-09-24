@@ -20,7 +20,7 @@ export function AngularFrame({
   className,
   size = 420,
   strokeWidth = 1,
-  color = '#FF5A00',
+  color = '#FF5400',
   animate = true,
   delay = 0,
 }: AngularFrameProps) {
@@ -48,7 +48,7 @@ export function AngularFrame({
 export function PlusAccent({
   className,
   size = 28,
-  color = '#FF9D00',
+  color = '#FF8C00',
 }: {
   className?: string
   size?: number
@@ -100,7 +100,7 @@ export function SpotlightGlow({ className }: { className?: string }) {
       aria-hidden="true"
       className={cn('pointer-events-none absolute rounded-full blur-[120px]', className)}
       style={{
-        background: 'radial-gradient(circle, rgba(255,90,0,0.35) 0%, rgba(255,90,0,0) 70%)',
+        background: 'radial-gradient(circle, rgba(255,84,0,0.35) 0%, rgba(255,84,0,0) 70%)',
       }}
     />
   )

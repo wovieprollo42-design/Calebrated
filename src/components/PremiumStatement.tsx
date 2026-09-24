@@ -9,11 +9,11 @@ export function PremiumStatement() {
     <section className="relative flex min-h-[80vh] items-center overflow-hidden bg-ink">
       <AmbientBackground intensity="low" />
 
-      <AngularFrame size={520} strokeWidth={1} color="rgba(255,90,0,0.14)" className="left-[-14%] top-[-16%]" />
+      <AngularFrame size={520} strokeWidth={1} color="rgba(255,84,0,0.14)" className="left-[-14%] top-[-16%]" />
       <AngularFrame
         size={220}
         strokeWidth={1.5}
-        color="rgba(255,157,0,0.3)"
+        color="rgba(255,140,0,0.3)"
         className="right-[8%] bottom-[10%]"
         delay={0.3}
       />
@@ -25,7 +25,7 @@ export function PremiumStatement() {
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <h2 className="mx-auto mt-6 max-w-4xl font-display text-display-lg font-semibold text-white text-balance">
-              Do More of What Moves
+              Do More of What Moves{' '}
               <br />
               Your Business Forward.
             </h2>
@@ -37,7 +37,7 @@ export function PremiumStatement() {
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
             <div className="mt-10 flex justify-center">
-              <MagneticButton href="#contact" variant="solid">
+              <MagneticButton to="/contact" variant="solid">
                 Book a Consultation
                 <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>

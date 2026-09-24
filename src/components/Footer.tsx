@@ -1,22 +1,24 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { services } from '@/data/services'
+import { BrandLogo } from './BrandLogo'
 import { ScrollReveal } from './ScrollReveal'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Why CALEBrated', href: '#difference' },
-  { label: 'Process', href: '#process' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Process', to: '/process' },
+  { label: 'Contact', to: '/contact' },
+  { label: 'Why CALEBrated', to: '/about#difference' },
 ]
 
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-ink">
       <ScrollReveal direction="none" amount={0.4}>
-        <a
-          href="#contact"
+        <Link
+          to="/contact"
           className="group flex items-center justify-between border-b border-white/10 bg-soft px-6 py-8 transition-colors duration-500 ease-premium hover:bg-orange lg:px-12"
         >
           <span className="mx-auto flex w-full max-w-7xl items-center justify-between">
@@ -29,15 +31,17 @@ export function Footer() {
               className="text-orange transition-all duration-500 ease-premium group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-ink"
             />
           </span>
-        </a>
+        </Link>
       </ScrollReveal>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-20 lg:px-12">
         <div className="grid grid-cols-1 gap-14 pb-16 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <img src="/calebrated-logo.png" alt="CALEBrated Virtual Services" className="h-16 w-16 object-contain" />
+            <Link to="/" aria-label="CALEBrated Virtual Services, home">
+              <BrandLogo size="lg" />
+            </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
-              Professional virtual support built around the way your business works.
+              Virtual assistant and business operations support that keeps growing companies organized.
             </p>
           </div>
 
@@ -46,9 +50,9 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-offwhite/80 transition-colors hover:text-orange">
+                  <Link to={link.to} className="text-sm text-offwhite/80 transition-colors hover:text-orange">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -59,9 +63,9 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {services.slice(0, 6).map((service) => (
                 <li key={service.title}>
-                  <a href="#services" className="text-sm text-offwhite/80 transition-colors hover:text-orange">
+                  <Link to="/services" className="text-sm text-offwhite/80 transition-colors hover:text-orange">
                     {service.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -15,10 +15,14 @@ export function Process() {
     <section id="process" className="bg-ink py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <ScrollReveal>
-          <p className="text-xs font-semibold uppercase tracking-widest2 text-orange">How It Works</p>
+          <p className="text-xs font-semibold uppercase tracking-widest2 text-orange">Four Simple Steps</p>
           <h2 className="mt-5 max-w-3xl font-display text-display-md font-semibold text-white text-balance">
             From Overwhelmed to Organized.
           </h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            Every engagement starts with a clear picture of how your team works, so the remote administrative
+            support, customer service, or CRM support you receive fits the way you already operate from day one.
+          </p>
         </ScrollReveal>
 
         <div ref={ref} className="relative mt-24">

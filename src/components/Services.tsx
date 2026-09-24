@@ -12,10 +12,14 @@ export function Services() {
     <section id="services" className="relative bg-ink py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <ScrollReveal>
-          <p className="text-xs font-semibold uppercase tracking-widest2 text-orange">Services</p>
+          <p className="text-xs font-semibold uppercase tracking-widest2 text-orange">What We Handle</p>
           <h2 className="mt-5 max-w-3xl font-display text-display-md font-semibold text-white text-balance">
-            Expert Support. Exactly Where You Need It.
+            Eight Service Areas. One Dependable Team.
           </h2>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            Our virtual assistant services also cover social media, data entry and management, calendar and email
+            management, and research and reporting, handled by one team that learns how you work.
+          </p>
         </ScrollReveal>
 
         {/* Desktop interactive list */}
@@ -67,7 +71,7 @@ export function Services() {
               >
                 <div
                   className="h-full w-full"
-                  style={{ background: 'linear-gradient(160deg, #25282C 0%, #0A0A0A 100%)' }}
+                  style={{ background: 'linear-gradient(160deg, #283036 0%, #0F131B 100%)' }}
                 />
                 <GridOverlay />
                 <AnimatePresence mode="wait">
@@ -107,7 +111,7 @@ export function Services() {
                   className="relative flex aspect-[4/5] flex-col justify-end overflow-hidden p-7"
                   style={{
                     clipPath: 'polygon(0% 0%, 92% 0%, 100% 100%, 8% 100%)',
-                    background: 'linear-gradient(160deg, #25282C 0%, #0A0A0A 100%)',
+                    background: 'linear-gradient(160deg, #283036 0%, #0F131B 100%)',
                   }}
                 >
                   <GridOverlay />

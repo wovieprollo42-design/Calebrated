@@ -1,9 +1,12 @@
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, ArrowDown } from 'lucide-react'
 import { type MouseEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { AngularFrame, GridOverlay, PlusAccent } from './BrandGeometry'
 import { MagneticButton } from './MagneticButton'
 import { AmbientBackground } from './motion/AmbientBackground'
+
+const MotionLink = motion(Link)
 
 export function Hero() {
   const reduceMotion = useReducedMotion()
@@ -32,10 +35,10 @@ export function Hero() {
       <AmbientBackground intensity="high" scrim={0.2} />
 
       <motion.div style={{ x: frameX, y: frameY }} className="absolute right-[6%] top-[18%] hidden lg:block">
-        <AngularFrame size={360} strokeWidth={1} color="rgba(255,90,0,0.55)" delay={0.2} />
+        <AngularFrame size={360} strokeWidth={1} color="rgba(255,84,0,0.55)" delay={0.2} />
       </motion.div>
       <motion.div style={{ x: frameX2, y: frameY2 }} className="absolute right-[16%] top-[30%] hidden lg:block">
-        <AngularFrame size={200} strokeWidth={1.5} color="#FF5A00" delay={0.5} />
+        <AngularFrame size={200} strokeWidth={1.5} color="#FF5400" delay={0.5} />
       </motion.div>
       <motion.div
         style={{ x: frameX, y: frameY }}
@@ -44,7 +47,7 @@ export function Hero() {
         transition={{ delay: 1, duration: 0.8 }}
         className="absolute right-[10%] top-[52%] hidden lg:block"
       >
-        <PlusAccent size={22} color="#FF9D00" />
+        <PlusAccent size={22} color="#FF8C00" />
       </motion.div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-20 lg:grid-cols-12 lg:px-12">
@@ -55,7 +58,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mb-6 text-xs font-semibold uppercase tracking-widest2 text-orange"
           >
-            Virtual Support &bull; Operations &bull; Business Growth
+            Remote Support &bull; Operations &bull; Business Growth
           </motion.p>
 
           <motion.h1
@@ -64,9 +67,9 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-display-xl font-semibold text-white text-balance"
           >
-            More Time to Lead.
+            Virtual Assistant Services.{' '}
             <br />
-            <span className="text-muted">Less</span> <span className="text-orange">Work</span> Holding You Back.
+            <span className="text-muted">More</span> <span className="text-orange">Time</span> to Lead.
           </motion.h1>
 
           <motion.p
@@ -75,8 +78,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-8 max-w-xl text-lg leading-relaxed text-muted"
           >
-            CALEBrated Virtual Services provides reliable, flexible support that helps businesses simplify
-            operations, stay organized, and focus on growth.
+            CALEBrated Virtual Services handles your admin work, customer service, and daily tasks, so you can focus on growing your business.
           </motion.p>
 
           <motion.div
@@ -85,17 +87,17 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="mt-10 flex flex-wrap items-center gap-5"
           >
-            <MagneticButton href="#services" variant="solid">
+            <MagneticButton to="/services" variant="solid">
               Explore Our Services
               <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
             </MagneticButton>
-            <MagneticButton href="#contact" variant="outline">
+            <MagneticButton to="/contact" variant="outline">
               Book a Consultation
             </MagneticButton>
           </motion.div>
 
-          <motion.a
-            href="#process"
+          <MotionLink
+            to="/process"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -103,7 +105,7 @@ export function Hero() {
           >
             See how we work
             <ArrowRight size={14} />
-          </motion.a>
+          </MotionLink>
         </div>
 
         <div className="lg:col-span-5">
@@ -118,14 +120,14 @@ export function Hero() {
               className="h-full w-full"
               style={{
                 background:
-                  'linear-gradient(155deg, #25282C 0%, #111214 55%, #0A0A0A 100%)',
+                  'linear-gradient(155deg, #283036 0%, #161B25 55%, #0F131B 100%)',
               }}
             >
               <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
                 <GridOverlay />
                 <div
                   className="absolute h-[60%] w-[60%] rounded-full opacity-40 blur-3xl"
-                  style={{ background: 'radial-gradient(circle, rgba(255,90,0,0.5), transparent 70%)' }}
+                  style={{ background: 'radial-gradient(circle, rgba(255,84,0,0.5), transparent 70%)' }}
                 />
                 <div className="relative rotate-45 border border-orange/40" style={{ width: 140, height: 140, borderRadius: '22%' }} />
               </div>

@@ -14,11 +14,11 @@ export function SectionHeader({ eyebrow, title, intro, tone = 'dark', align = 'l
   const isCenter = align === 'center'
   return (
     <ScrollReveal className={cn(isCenter && 'mx-auto text-center', className)}>
-      <p className="text-xs font-semibold uppercase tracking-widest2 text-orange">{eyebrow}</p>
+      <p className={cn('text-xs font-semibold uppercase tracking-widest2', tone === 'dark' ? 'text-orange' : 'text-orange-deep')}>{eyebrow}</p>
       <h2
         className={cn(
           'mt-5 max-w-3xl font-display text-display-md font-semibold text-balance',
-          tone === 'dark' ? 'text-white' : 'text-ink',
+          tone === 'dark' ? 'text-white' : 'text-navy',
           isCenter && 'mx-auto',
         )}
       >
