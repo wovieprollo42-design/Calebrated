@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from 'react'
 import { useReducedMotion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -21,6 +21,7 @@ export function Marquee({
 }: MarqueeProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(true)
+  const [hovered, setHovered] = useState(false)
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
@@ -31,20 +32,36 @@ export function Marquee({
     return () => io.disconnect()
   }, [])
 
+  function onPointer(e: PointerEvent<HTMLDivElement>, value: boolean) {
+    if (pauseOnHover && e.pointerType === 'mouse') setHovered(value)
+  }
+
+  const paused = !inView || (pauseOnHover && hovered)
   const style = {
     '--marquee-duration': `${duration}s`,
-    animationPlayState: inView ? 'running' : 'paused',
+    animationPlayState: paused ? 'paused' : 'running',
   } as CSSProperties
 
+  if (reduceMotion) {
+    return (
+      <div ref={ref} className={cn('overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden', className)}>
+        <div className={cn('flex w-max', trackClassName)}>{children}</div>
+      </div>
+    )
+  }
+
   return (
-    <div ref={ref} className={cn('group/marquee overflow-hidden', className)}>
+    <div
+      ref={ref}
+      className={cn('overflow-hidden', className)}
+      onPointerEnter={(e) => onPointer(e, true)}
+      onPointerLeave={(e) => onPointer(e, false)}
+    >
       <div
         style={style}
         className={cn(
           'flex w-max will-change-transform',
           direction === 'left' ? 'animate-marquee' : 'animate-marquee-reverse',
-          pauseOnHover && 'group-hover/marquee:[animation-play-state:paused]',
-          reduceMotion && '[animation:none]',
           trackClassName,
         )}
       >

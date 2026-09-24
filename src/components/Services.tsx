@@ -95,9 +95,14 @@ export function Services() {
 
         {/* Mobile / tablet snap cards */}
         <div className="mt-14 lg:hidden">
-          <SnapCarousel step={296}>
+          <SnapCarousel label="Services" step={296}>
             {services.map((service, i) => (
-              <ScrollReveal key={service.title} delay={i * 0.06} direction="right" className="w-[272px] shrink-0 snap-start">
+              <ScrollReveal
+                key={service.title}
+                delay={Math.min(i, 2) * 0.08}
+                amount={0.1}
+                className="w-[272px] shrink-0 snap-start"
+              >
                 <div
                   className="relative flex aspect-[4/5] flex-col justify-end overflow-hidden p-7"
                   style={{
