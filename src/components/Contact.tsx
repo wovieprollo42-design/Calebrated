@@ -11,6 +11,12 @@ const SERVICE_OPTIONS = [
   'Lead Generation',
   'CRM Support',
   'Research & Reporting',
+  'Paid Advertising',
+  'Search Engine Optimization (SEO)',
+  'GHL and Automation Services',
+  'AI Chatbot & Voice AI',
+  'Email Marketing',
+  'Funnel Creation',
   'Not Sure Yet',
 ]
 

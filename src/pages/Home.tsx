@@ -1,7 +1,7 @@
 import { HomeHero } from '@/components/home/HomeHero'
 import {
   Appointments,
-  ClientLogos,
+  PartnerLogos,
   ConnectWithUs,
   CoreValues,
   FeatureCards,
@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <ClientLogos />
+      <PartnerLogos />
       <FeaturesIntro />
       <FeatureCards />
       <WebsiteFeature />

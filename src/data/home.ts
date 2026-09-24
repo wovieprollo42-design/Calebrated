@@ -1,10 +1,38 @@
 export const CALENDLY_URL = 'https://calendly.com/infocalebrated'
 
-export const clientLogos = [
-  { src: '/images/home/client-4.png', alt: 'Amply Development', width: 240, height: 240 },
-  { src: '/images/home/client-2.png', alt: 'CALEBrated Virtual Services', width: 240, height: 240 },
-  { src: '/images/home/client-1.png', alt: 'NewWine', width: 240, height: 240 },
-  { src: '/images/home/client-3.png', alt: 'MapLifts', width: 480, height: 240 },
+export interface PartnerLogo {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
+
+const logo = (slug: string, alt: string, width: number, height: number): PartnerLogo => ({
+  src: `/images/partners/${slug}.png`,
+  alt,
+  width,
+  height,
+})
+
+export const partnerLogoRows: PartnerLogo[][] = [
+  [
+    logo('alphalete', 'Alphalete Trenchless Services', 166, 180),
+    logo('amply', 'Amply Development', 217, 180),
+    logo('cgr-legacy', 'CGR Legacy Construction', 182, 180),
+    logo('bootstrapped', 'Bootstrapped Marketing', 360, 114),
+    logo('newwine', 'NewWine', 272, 180),
+    logo('designsdx', 'DesignsDx', 360, 94),
+    logo('fmh', 'Foundational Marketing Hub', 182, 180),
+  ],
+  [
+    logo('hh-pools', 'H&H Pools', 200, 180),
+    logo('maplifts', 'MapLifts', 358, 180),
+    logo('pentarm-pools', 'Pentarm Pools', 214, 180),
+    logo('calebrated', 'CALEBrated Virtual Services', 190, 180),
+    logo('pipeliners-usa', 'Pipeliners USA', 259, 180),
+    logo('summit-plumbing', 'Summit Plumbing Pros', 301, 180),
+    logo('tag-marketing', 'TAG Marketing', 148, 180),
+  ],
 ]
 
 export const featurePoints = [
@@ -71,13 +99,38 @@ export const homeServices = [
   },
   {
     icon: '/images/home/service-5.png',
-    title: 'Email Marketing Campaigns',
+    title: 'Email Marketing',
     description: 'We specialize in creating highly targeted and impactful email marketing campaigns that deliver results.',
   },
   {
     icon: '/images/home/service-6.png',
     title: 'Bookkeeping',
     description: 'Providing accurate, reliable, and efficient bookkeeping solutions tailored to your specific needs.',
+  },
+  {
+    icon: '/images/home/service-7.svg',
+    title: 'Paid Advertising',
+    description: 'Targeted ad campaigns on Google, Facebook, and Instagram that put your business in front of the right customers.',
+  },
+  {
+    icon: '/images/home/service-8.svg',
+    title: 'Search Engine Optimization (SEO)',
+    description: 'Rank higher on Google and bring in more visitors with on-page, technical, and local SEO.',
+  },
+  {
+    icon: '/images/home/service-9.svg',
+    title: 'GHL and Automation Services',
+    description: 'GoHighLevel setup and automations that capture leads, send follow-ups, and save your team hours every week.',
+  },
+  {
+    icon: '/images/home/service-10.svg',
+    title: 'AI Chatbot & Voice AI',
+    description: 'Smart chatbots and voice agents that answer questions, qualify leads, and book appointments around the clock.',
+  },
+  {
+    icon: '/images/home/service-11.svg',
+    title: 'Funnel Creation',
+    description: 'High-converting sales funnels that guide visitors from their first click to a booked call or a purchase.',
   },
 ]
 

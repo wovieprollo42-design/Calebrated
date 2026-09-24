@@ -1,34 +1,54 @@
 import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ScrollReveal } from '@/components/ScrollReveal'
+import { Marquee } from '@/components/ui/Marquee'
 import {
   CALENDLY_URL,
-  clientLogos,
   coreValues,
   featureCards,
   featurePoints,
   homeServices,
+  partnerLogoRows,
   stats,
   websitePoints,
   whyChooseUs,
 } from '@/data/home'
 import { CheckList, Eyebrow, OutlineButton, SectionTitle, SolidButton } from './HomeUI'
 
-export function ClientLogos() {
+export function PartnerLogos() {
   return (
-    <section aria-label="Brands we have worked with" className="bg-white py-16 lg:py-20">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 items-center gap-x-10 gap-y-12 px-6 sm:grid-cols-4">
-        {clientLogos.map((logo, i) => (
-          <ScrollReveal key={logo.alt} delay={i * 0.08} className="flex justify-center">
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width}
-              height={logo.height}
-              loading="lazy"
-              className="h-24 w-auto object-contain transition-transform duration-500 ease-premium hover:scale-105 lg:h-28"
-            />
-          </ScrollReveal>
+    <section aria-labelledby="partners-title" className="relative overflow-hidden bg-white py-16 lg:py-20">
+      <ScrollReveal className="mx-auto flex max-w-[1140px] items-center gap-5 px-6">
+        <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200" />
+        <h2
+          id="partners-title"
+          className="text-center font-display text-sm font-medium uppercase tracking-[0.22em] text-gray-500 sm:text-[15px]"
+        >
+          Trusted by growing businesses
+        </h2>
+        <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200" />
+      </ScrollReveal>
+
+      <div className="mt-12 space-y-6 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+        {partnerLogoRows.map((row, r) => (
+          <Marquee key={r} direction={r % 2 === 0 ? 'left' : 'right'} duration={r % 2 === 0 ? 55 : 62} pauseOnHover className="py-3">
+            {[...row, ...row].map((partner, i) => (
+              <div
+                key={partner.src + i}
+                className="group mr-6 flex h-[104px] w-[200px] shrink-0 items-center justify-center rounded-2xl bg-white px-7 ring-1 ring-gray-100 shadow-[0_14px_34px_-22px_rgba(52,63,90,0.45)] transition-all duration-500 ease-premium hover:-translate-y-1 hover:ring-orange/30 hover:shadow-[0_22px_44px_-20px_rgba(255,84,0,0.35)] sm:h-[116px] sm:w-[232px]"
+              >
+                <img
+                  src={partner.src}
+                  alt={i < row.length ? partner.alt : ''}
+                  width={partner.width}
+                  height={partner.height}
+                  loading="lazy"
+                  draggable={false}
+                  className="max-h-[58px] w-auto max-w-full object-contain transition-transform duration-500 ease-premium group-hover:scale-105 sm:max-h-[66px]"
+                />
+              </div>
+            ))}
+          </Marquee>
         ))}
       </div>
     </section>
@@ -127,9 +147,13 @@ export function ServiceGrid() {
       <h2 id="home-services-title" className="sr-only">
         Our Services
       </h2>
-      <div className="mx-auto grid max-w-[1380px] gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto flex max-w-[1380px] flex-wrap justify-center gap-8 px-6">
         {homeServices.map((service, i) => (
-          <ScrollReveal key={service.title} delay={(i % 3) * 0.08} className="h-full">
+          <ScrollReveal
+            key={service.title}
+            delay={(i % 3) * 0.08}
+            className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]"
+          >
             <article className="group h-full rounded-2xl bg-white p-8 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.16)] transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(255,84,0,0.25)]">
               <img
                 src={service.icon}

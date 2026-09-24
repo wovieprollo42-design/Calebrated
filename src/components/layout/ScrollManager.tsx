@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 import { useReducedMotion } from 'framer-motion'
-import { PAGE_ENTER_MS, PAGE_EXIT_MS } from './PageTransition'
+import { PAGE_ENTER_MS, PAGE_EXIT_MS } from './transition'
 
 const HEADER_OFFSET = 96
 // The outgoing page is fully transparent slightly before its exit finishes,

@@ -75,7 +75,7 @@ export function HomeHero() {
           <motion.div {...rise(0.6)} className="mt-10">
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-3 rounded-md bg-navy px-10 py-4 font-display text-[15px] font-medium text-white shadow-lg transition-all duration-300 ease-premium hover:-translate-y-0.5 hover:bg-orange"
+              className="group inline-flex items-center gap-3 rounded-md bg-orange px-10 py-4 font-display text-[15px] font-medium text-white shadow-[0_12px_30px_-8px_rgba(255,84,0,0.6)] transition-all duration-300 hover:-translate-y-1 hover:bg-orange-deep"
             >
               Get Started
               <ChevronRight size={16} strokeWidth={3} className="transition-transform duration-300 group-hover:translate-x-1" />

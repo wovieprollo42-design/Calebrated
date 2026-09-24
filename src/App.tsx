@@ -5,7 +5,8 @@ import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { BookingBadge } from '@/components/BookingBadge'
 import { ScrollManager } from '@/components/layout/ScrollManager'
-import { usePageVariants } from '@/components/layout/PageTransition'
+import { PageContent, PageCurtain } from '@/components/layout/PageTransition'
+import { pageVariants } from '@/components/layout/transition'
 import Home from '@/pages/Home'
 import About from '@/pages/About'
 import Services from '@/pages/Services'
@@ -15,7 +16,6 @@ import NotFound from '@/pages/NotFound'
 
 export default function App() {
   const location = useLocation()
-  const pageVariants = usePageVariants()
   // Focusing the incoming page's landmark once it has entered gives keyboard users
   // a sensible tab start point and lets screen readers announce the route change.
   // With initial={false} the first mount never animates, so this skips page load.
@@ -40,14 +40,17 @@ export default function App() {
             if (definition === 'animate') mainRef.current?.focus({ preventScroll: true })
           }}
         >
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <PageContent>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/process" element={<Process />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageContent>
+          <PageCurtain />
         </motion.main>
       </AnimatePresence>
       <Footer />
