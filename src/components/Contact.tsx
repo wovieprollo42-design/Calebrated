@@ -181,9 +181,7 @@ export function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate>
-          <p className="text-label text-gray-600">All fields are required unless marked optional.</p>
-
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             <div>
               <label htmlFor="contact-name" className={labelClass}>
                 Name
