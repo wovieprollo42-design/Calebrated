@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { EASE_PREMIUM } from '@/lib/motion'
 import { container, eyebrowDark } from '@/lib/ui'
+import { cn } from '@/lib/utils'
 import { ButtonLink, type ButtonVariant } from './Button'
 
 interface PageHeaderCta {
@@ -16,13 +17,20 @@ interface PageHeaderProps {
   title: ReactNode
   intro?: string
   cta?: PageHeaderCta
+  /** Optional right-hand column on desktop, stacked under the text on phones (the Contact form uses it). */
+  aside?: ReactNode
 }
 
-export function PageHeader({ eyebrow, title, intro, cta }: PageHeaderProps) {
+export function PageHeader({ eyebrow, title, intro, cta, aside }: PageHeaderProps) {
   const reduceMotion = useReducedMotion()
 
   return (
-    <section className="relative isolate overflow-hidden bg-charcoal py-14 sm:py-20 lg:py-28">
+    <section
+      className={cn(
+        'relative isolate overflow-hidden bg-charcoal py-14 sm:py-20',
+        aside ? 'lg:py-14' : 'lg:py-28',
+      )}
+    >
       <img
         src="/images/home/hero.jpg"
         alt=""
@@ -41,11 +49,12 @@ export function PageHeader({ eyebrow, title, intro, cta }: PageHeaderProps) {
       {/* Phone scrim: the gradient above alone leaves the text on the photo's brighter side at narrow widths. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#181F26]/55 sm:hidden" />
 
-      <div className={container}>
+      <div className={cn(container, Boolean(aside) && 'grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12')}>
         <motion.div
           initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE_PREMIUM }}
+          className={aside ? 'lg:col-span-6' : undefined}
         >
           <p className={eyebrowDark}>{eyebrow}</p>
           <h1 className="mt-3 max-w-3xl text-balance font-display text-hero font-bold text-white">{title}</h1>
@@ -58,6 +67,16 @@ export function PageHeader({ eyebrow, title, intro, cta }: PageHeaderProps) {
             </div>
           )}
         </motion.div>
+        {aside && (
+          <motion.div
+            initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: EASE_PREMIUM }}
+            className="lg:col-span-6"
+          >
+            {aside}
+          </motion.div>
+        )}
       </div>
     </section>
   )

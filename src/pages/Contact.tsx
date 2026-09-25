@@ -1,4 +1,4 @@
-import { Contact } from '@/components/Contact'
+import { ContactForm, ContactOptions } from '@/components/Contact'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { contactJsonLd } from '@/lib/seo'
 import { usePageMeta } from '@/lib/usePageMeta'
@@ -18,9 +18,10 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Let's Talk About Your Business"
-        intro="Send a message about your business, or book a free call below."
+        intro="Tell us about your business and what you need. We will get back to you."
+        aside={<ContactForm />}
       />
-      <Contact />
+      <ContactOptions />
     </>
   )
 }
