@@ -65,7 +65,7 @@ export function BookingBadge() {
               <X size={18} aria-hidden="true" />
             </button>
             <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-offwhite">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#1E232B_0%,#161B22_100%)]">
                 <img src={AVATAR_SRC} alt="" width={48} height={48} className="h-7 w-7 object-contain" />
               </span>
               <span className="pt-1 text-body text-navy">
