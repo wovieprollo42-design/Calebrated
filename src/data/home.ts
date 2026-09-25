@@ -41,7 +41,7 @@ export const homeCopy = {
   heroParagraph:
     'CALEBrated Virtual Services is a remote team of virtual assistants that handles your admin, marketing, and website work. We help busy business owners get more done without hiring in-house. Book a free consultation and tell us what you need.',
   heroProof: 'Trusted by 20+ clients.',
-  clientsHeading: 'Businesses Like Yours Work With Us',
+  clientsHeading: 'Our Clients',
   whatWeDo: {
     eyebrow: 'What We Do',
     title: 'One Team For Admin, Marketing, And Website Work',
