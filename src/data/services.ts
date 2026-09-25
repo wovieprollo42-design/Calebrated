@@ -11,7 +11,7 @@ export interface ServiceGroup {
   services: ServiceItem[]
 }
 
-// The one master service list (structure.md section 3), 17 services in 3 groups.
+// The one master service list (structure.md section 3), 18 services in 3 groups.
 // The Services page and the contact form's service picker both read from this.
 export const serviceGroups: ServiceGroup[] = [
   {
@@ -72,6 +72,11 @@ export const serviceGroups: ServiceGroup[] = [
         description: 'Clean, on-brand design for your website, social posts, and marketing materials.',
       },
       {
+        slug: 'video-editing',
+        title: 'Video Editing',
+        description: 'Short clips and longer videos edited for social media, ads, and your website, ready to post.',
+      },
+      {
         slug: 'email-marketing',
         title: 'Email Marketing',
         description: 'Email campaigns and automated sequences that bring customers back and keep leads warm.',
@@ -83,7 +88,7 @@ export const serviceGroups: ServiceGroup[] = [
       },
       {
         slug: 'seo',
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Search Engine Optimization',
         description: 'On-page and local SEO that helps your business rank higher and bring in steady traffic.',
       },
       {

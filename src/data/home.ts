@@ -84,7 +84,7 @@ export const homeCopy = {
 // Three groups, matching brand.md's message pillar 1. Each group lists 2 or 3 example services.
 export const whatWeDoPoints = [
   { title: 'Admin & Operations', text: 'Scheduling, email, data entry, and bookkeeping.' },
-  { title: 'Marketing & Sales', text: 'Social media, email marketing, ads, and SEO.' },
+  { title: 'Marketing & Sales', text: 'Social media, video editing, ads, and SEO.' },
   { title: 'Websites & Automation', text: 'Websites, funnels, and GHL automation.' },
 ]
 
@@ -131,6 +131,12 @@ export const homeServices = [
     description: 'Clean, on-brand design for your marketing and social posts.',
   },
   {
+    slug: 'video-editing',
+    icon: '/images/home/service-12.svg',
+    title: 'Video Editing',
+    description: 'Edited videos for social media, ads, and your website, ready to post.',
+  },
+  {
     slug: 'email-marketing',
     icon: '/images/home/service-5.png',
     title: 'Email Marketing',
@@ -145,7 +151,7 @@ export const homeServices = [
   {
     slug: 'seo',
     icon: '/images/home/service-8.svg',
-    title: 'Search Engine Optimization (SEO)',
+    title: 'Search Engine Optimization',
     description: 'Better rankings on Google, so more visitors find you.',
   },
   {
