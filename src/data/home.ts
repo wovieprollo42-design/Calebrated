@@ -28,7 +28,6 @@ export const partnerLogoRows: PartnerLogo[][] = [
     logo('hh-pools', 'H&H Pools', 200, 180),
     logo('maplifts', 'MapLifts', 358, 180),
     logo('pentarm-pools', 'Pentarm Pools', 214, 180),
-    logo('calebrated', 'CALEBrated Virtual Services', 190, 180),
     logo('pipeliners-usa', 'Pipeliners USA', 259, 180),
     logo('summit-plumbing', 'Summit Plumbing Pros', 301, 180),
     logo('tag-marketing', 'TAG Marketing', 148, 180),

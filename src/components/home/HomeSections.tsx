@@ -34,8 +34,9 @@ export function PartnerLogos() {
 
       <div className="mt-8 space-y-3 sm:mt-12 sm:space-y-6 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         {partnerLogoRows.map((row, r) => (
-          <Marquee key={r} direction={r % 2 === 0 ? 'left' : 'right'} duration={r % 2 === 0 ? 55 : 62} pauseOnHover className="py-3">
-            {[...row, ...row].map((partner, i) => (
+          <Marquee key={r} direction={r % 2 === 0 ? 'left' : 'right'} duration={r % 2 === 0 ? 110 : 124} pauseOnHover className="py-3">
+            {/* Four copies so each half of the loop is wider than the widest screen; two left a gap on the shorter row. */}
+            {[...row, ...row, ...row, ...row].map((partner, i) => (
               <div
                 key={partner.src + i}
                 className="mr-4 flex h-[84px] w-[156px] shrink-0 items-center justify-center rounded-2xl bg-white px-5 ring-1 ring-gray-200 sm:mr-6 sm:h-[116px] sm:w-[232px] sm:px-7"
