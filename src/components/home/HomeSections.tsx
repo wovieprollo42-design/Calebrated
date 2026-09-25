@@ -1,33 +1,36 @@
-import { animate, motion, useInView, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { ScrollReveal } from '@/components/ScrollReveal'
+import { animate, useInView, useReducedMotion } from 'framer-motion'
+import { Mail } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ButtonLink, TextLink } from '@/components/ui/Button'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Marquee } from '@/components/ui/Marquee'
+import { processSteps } from '@/data/process'
 import {
   CALENDLY_URL,
   coreValues,
-  featureCards,
-  featurePoints,
+  homeCopy,
   homeServices,
+  homeStepImages,
   partnerLogoRows,
   stats,
   websitePoints,
+  whatWeDoPoints,
   whyChooseUs,
 } from '@/data/home'
-import { CheckList, Eyebrow, OutlineButton, SectionTitle, SolidButton } from './HomeUI'
+import { card, container, darkBand, sectionY, stripY } from '@/lib/ui'
+import { cn } from '@/lib/utils'
+import { CheckList } from './HomeUI'
 
 export function PartnerLogos() {
   return (
-    <section aria-labelledby="partners-title" className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20">
-      <ScrollReveal className="mx-auto flex max-w-[1140px] items-center gap-3 px-6 sm:gap-5">
-        <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-200" />
-        <h2
-          id="partners-title"
-          className="whitespace-nowrap text-center font-display text-xs font-medium uppercase tracking-[0.16em] text-gray-500 sm:text-[15px] sm:tracking-[0.22em]"
-        >
-          Trusted by growing businesses
+    <section id="clients" aria-labelledby="partners-title" className={cn('overflow-hidden bg-white', stripY)}>
+      <div className={cn(container, 'flex items-center justify-center gap-5')}>
+        <span aria-hidden="true" className="hidden h-px flex-1 bg-gray-200 sm:block" />
+        <h2 id="partners-title" className="text-balance text-center font-display text-label font-medium uppercase tracking-widest text-gray-500 sm:whitespace-nowrap">
+          {homeCopy.clientsHeading}
         </h2>
-        <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-gray-200" />
-      </ScrollReveal>
+        <span aria-hidden="true" className="hidden h-px flex-1 bg-gray-200 sm:block" />
+      </div>
 
       <div className="mt-8 space-y-3 sm:mt-12 sm:space-y-6 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         {partnerLogoRows.map((row, r) => (
@@ -35,7 +38,7 @@ export function PartnerLogos() {
             {[...row, ...row].map((partner, i) => (
               <div
                 key={partner.src + i}
-                className="group mr-4 flex h-[84px] w-[156px] shrink-0 items-center justify-center rounded-2xl bg-white px-5 ring-1 ring-gray-100 shadow-[0_14px_34px_-22px_rgba(52,63,90,0.45)] transition-all duration-500 ease-premium hover:-translate-y-1 hover:ring-orange/30 hover:shadow-[0_22px_44px_-20px_rgba(255,84,0,0.35)] sm:mr-6 sm:h-[116px] sm:w-[232px] sm:px-7"
+                className="mr-4 flex h-[84px] w-[156px] shrink-0 items-center justify-center rounded-2xl bg-white px-5 ring-1 ring-gray-200 sm:mr-6 sm:h-[116px] sm:w-[232px] sm:px-7"
               >
                 <img
                   src={partner.src}
@@ -44,7 +47,7 @@ export function PartnerLogos() {
                   height={partner.height}
                   loading="lazy"
                   draggable={false}
-                  className="max-h-[46px] w-auto max-w-full object-contain transition-transform duration-500 ease-premium group-hover:scale-105 sm:max-h-[66px]"
+                  className="max-h-[46px] w-auto max-w-full object-contain sm:max-h-[66px]"
                 />
               </div>
             ))}
@@ -57,85 +60,25 @@ export function PartnerLogos() {
 
 export function FeaturesIntro() {
   return (
-    <section className="overflow-hidden bg-white py-14 sm:py-20 lg:py-28">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-10 px-6 lg:grid-cols-[1.25fr_0.75fr]">
-        <ScrollReveal>
-          <Eyebrow>Features</Eyebrow>
-          <SectionTitle tone="black">Pushing the Boundaries of What&rsquo;s Possible In The Virtual Realm</SectionTitle>
-          <p className="mt-6 text-[17px] leading-relaxed text-black/80">
-            Our cutting-edge virtual services harness the power of technology to create seamless virtual environments
-            that transcend traditional boundaries.
-          </p>
-          <CheckList items={featurePoints} className="mt-8" />
-        </ScrollReveal>
-        <ScrollReveal direction="right" delay={0.15}>
-          <img
-            src="/images/home/features.png"
-            alt="CALEBrated team members working together at a laptop"
-            width={932}
-            height={779}
-            loading="lazy"
-            className="mx-auto w-full max-w-[520px]"
+    <section id="what-we-do" aria-labelledby="what-we-do-title" className={cn('overflow-hidden bg-offwhite', sectionY)}>
+      <div className={cn(container, 'grid items-center gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16')}>
+        <div>
+          <SectionHeader
+            id="what-we-do-title"
+            eyebrow={homeCopy.whatWeDo.eyebrow}
+            title={homeCopy.whatWeDo.title}
+            intro={homeCopy.whatWeDo.intro}
           />
-        </ScrollReveal>
-      </div>
-    </section>
-  )
-}
-
-export function FeatureCards() {
-  return (
-    <section className="bg-white pb-14 sm:pb-20 lg:pb-28">
-      <div className="mx-auto grid max-w-[1380px] gap-6 px-6 sm:gap-8 md:grid-cols-2">
-        {featureCards.map((card, i) => (
-          <ScrollReveal key={card.title} delay={(i % 2) * 0.1} className="h-full">
-            <article className="group h-full rounded-2xl bg-white p-6 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.18)] transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(52,63,90,0.28)] sm:p-8">
-              <div className="overflow-hidden rounded-lg">
-                <img
-                  src={card.image}
-                  alt=""
-                  width={767}
-                  height={330}
-                  loading="lazy"
-                  className="aspect-[767/330] w-full object-cover transition-transform duration-700 ease-premium group-hover:scale-105"
-                />
-              </div>
-              <h3 className="mt-5 font-display text-[22px] font-semibold text-black sm:mt-7 sm:text-2xl lg:text-[26px]">{card.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-black/75">{card.description}</p>
-            </article>
-          </ScrollReveal>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-export function WebsiteFeature() {
-  return (
-    <section className="overflow-hidden bg-white py-14 sm:py-20 lg:py-28">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-10 sm:gap-14 px-6 lg:grid-cols-2">
-        <ScrollReveal direction="left" className="order-2 lg:order-1">
-          <img
-            src="/images/home/website.png"
-            alt="A custom website shown on a laptop screen"
-            width={932}
-            height={779}
-            loading="lazy"
-            className="mx-auto w-full max-w-[520px]"
-          />
-        </ScrollReveal>
-        <ScrollReveal delay={0.1} className="order-1 lg:order-2">
-          <Eyebrow>Features</Eyebrow>
-          <SectionTitle>Unlock the Full Potential of a Well-crafted Website Tailored to Your Unique Needs.</SectionTitle>
-          <p className="mt-6 text-[17px] leading-relaxed text-gray-600">
-            Are you looking to establish a strong online presence or revamp your existing website? Look no further than
-            CALEBrated Virtual Services.
-          </p>
-          <CheckList items={websitePoints} className="mt-8" />
-          <OutlineButton to="/services" className="mt-10">
-            Learn More
-          </OutlineButton>
-        </ScrollReveal>
+          <CheckList items={whatWeDoPoints} twoLine className="mt-6" />
+        </div>
+        <img
+          src="/images/home/features.png"
+          alt="CALEBrated team members working together at a laptop"
+          width={932}
+          height={779}
+          loading="lazy"
+          className="mx-auto h-auto w-full max-w-[360px] sm:max-w-[440px] lg:max-w-[520px]"
+        />
       </div>
     </section>
   )
@@ -143,35 +86,55 @@ export function WebsiteFeature() {
 
 export function ServiceGrid() {
   return (
-    <section aria-labelledby="home-services-title" className="bg-white pb-16 sm:pb-24 lg:pb-32">
-      <h2 id="home-services-title" className="sr-only">
-        Our Services
-      </h2>
-      <div className="mx-auto flex max-w-[1380px] flex-wrap justify-center gap-4 px-6 sm:gap-8">
-        {homeServices.map((service, i) => (
-          <ScrollReveal
-            key={service.title}
-            delay={(i % 3) * 0.08}
-            className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc((100%-4rem)/3)]"
-          >
-            <article className="group flex h-full items-start gap-4 rounded-2xl bg-white p-5 shadow-[0_12px_40px_-12px_rgba(52,63,90,0.16)] sm:block sm:p-8 transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-20px_rgba(255,84,0,0.25)]">
-              <img
-                src={service.icon}
-                alt=""
-                width={160}
-                height={160}
-                loading="lazy"
-                className="h-14 w-14 shrink-0 transition-transform sm:h-20 sm:w-20 duration-500 ease-premium group-hover:-rotate-6 group-hover:scale-110"
-              />
+    <section id="services" aria-labelledby="services-title" className={cn('bg-white', sectionY)}>
+      <div className={container}>
+        <SectionHeader id="services-title" title={homeCopy.services.title} />
+        <div className="mt-10 flex flex-wrap justify-center gap-4 sm:mt-12 sm:gap-6 lg:gap-8">
+          {homeServices.map((service) => (
+            <article
+              key={service.title}
+              className={cn(card, 'flex h-full w-full items-start gap-4 sm:block sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4rem)/3)]')}
+            >
+              <img src={service.icon} alt="" width={160} height={160} loading="lazy" className="h-12 w-12 shrink-0 sm:h-20 sm:w-20" />
               <div>
-                <h3 className="font-display text-lg font-medium leading-snug text-navy sm:mt-6 sm:text-[22px]">
-                  {service.title}
-                </h3>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-gray-600 sm:mt-2 sm:text-base">{service.description}</p>
+                <h3 className="font-display text-h4 font-semibold text-navy sm:mt-6 sm:text-h3">{service.title}</h3>
+                <p className="mt-2 text-body text-gray-600">{service.description}</p>
               </div>
             </article>
-          </ScrollReveal>
-        ))}
+          ))}
+        </div>
+        <TextLink to="/services" className="mt-10">
+          See all services
+        </TextLink>
+      </div>
+    </section>
+  )
+}
+
+export function WebsiteFeature() {
+  return (
+    <section id="websites" aria-labelledby="websites-title" className={cn('overflow-hidden bg-offwhite', sectionY)}>
+      <div className={cn(container, 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
+        <div className="order-1 lg:order-2">
+          <SectionHeader
+            id="websites-title"
+            eyebrow={homeCopy.websites.eyebrow}
+            title={homeCopy.websites.title}
+            intro={homeCopy.websites.intro}
+          />
+          <CheckList items={websitePoints} className="mt-6" />
+          <ButtonLink href={CALENDLY_URL} className="mt-8">
+            Book a Free Consultation
+          </ButtonLink>
+        </div>
+        <img
+          src="/images/home/website.png"
+          alt="A custom website shown on a laptop screen"
+          width={932}
+          height={779}
+          loading="lazy"
+          className="order-2 mx-auto h-auto w-full max-w-[360px] sm:max-w-[440px] lg:order-1 lg:max-w-[520px]"
+        />
       </div>
     </section>
   )
@@ -194,9 +157,13 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, reduceMotion, value])
 
   return (
-    <span ref={ref} aria-label={`${value}${suffix}`}>
+    <span ref={ref}>
       <span aria-hidden="true">
         {display}
+        {suffix}
+      </span>
+      <span className="sr-only">
+        {value}
         {suffix}
       </span>
     </span>
@@ -206,25 +173,21 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 export function WorldwideStats() {
   return (
     <section
-      className="relative bg-white bg-contain bg-center bg-no-repeat py-16 sm:py-24 lg:py-32"
+      id="results"
+      aria-labelledby="results-title"
+      className={cn('bg-white bg-contain bg-center bg-no-repeat', sectionY)}
       style={{ backgroundImage: 'url(/images/home/map.jpg)' }}
     >
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <ScrollReveal>
-          <Eyebrow>Worldwide Experience</Eyebrow>
-          <SectionTitle className="mx-auto max-w-3xl">We Always Try To Understand Users Expectation</SectionTitle>
-          <p className="mt-6 text-[17px] text-gray-600">
-            Enhance your business operations and streamline your workflow. Connect with us.
-          </p>
-        </ScrollReveal>
-        <dl className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 sm:mt-16 sm:gap-y-12 lg:grid-cols-4">
-          {stats.map((stat, i) => (
-            <ScrollReveal key={stat.label} delay={i * 0.08} className="flex flex-col items-center">
-              <dt className="order-2 mt-2 font-display text-[15px] text-navy sm:text-lg lg:text-xl">{stat.label}</dt>
-              <dd className="font-display text-5xl font-light text-orange sm:text-6xl lg:text-7xl">
+      <div className={container}>
+        <SectionHeader id="results-title" align="center" title={homeCopy.results.title} intro={homeCopy.results.intro} />
+        <dl className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-x-4 gap-y-10 sm:mt-12 lg:grid-cols-4">
+          {stats.map((stat) => (
+            <div key={stat.label} className="flex flex-col-reverse items-center gap-2">
+              <dt className="font-display text-label font-medium text-navy">{stat.label}</dt>
+              <dd className="font-display text-5xl font-normal leading-none text-orange sm:text-6xl lg:text-7xl">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </dd>
-            </ScrollReveal>
+            </div>
           ))}
         </dl>
       </div>
@@ -232,31 +195,62 @@ export function WorldwideStats() {
   )
 }
 
-export function CoreValues() {
+export function FeatureCards() {
   return (
-    <section className="bg-[#F8F9FB] py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto grid max-w-[1380px] gap-12 px-6 sm:gap-16 lg:grid-cols-2">
-        <ScrollReveal>
-          <Eyebrow>Why Us</Eyebrow>
-          <SectionTitle className="lg:text-[2.75rem]">
-            Our Core Values Serve As The Foundation of Everything We Do
-          </SectionTitle>
-          <p className="mt-6 text-[17px] leading-relaxed text-gray-600">
-            These values define our company culture, guide our actions, and shape our relationships with clients and
-            team members. We are proud to uphold the following core values:
-          </p>
-          <SolidButton to="/about" className="mt-10">
-            Learn More
-          </SolidButton>
-        </ScrollReveal>
+    <section id="how-it-works" aria-labelledby="how-it-works-title" className={cn('bg-offwhite', sectionY)}>
+      <div className={container}>
+        <SectionHeader id="how-it-works-title" title={homeCopy.howItWorks.title} intro={homeCopy.howItWorks.intro} />
+        <div className="mt-10 grid gap-6 sm:mt-12 md:grid-cols-2 lg:gap-8">
+          {processSteps.map((step, i) => (
+            <article key={step.title} className={cn(card, 'h-full')}>
+              <img
+                src={homeStepImages[i]}
+                alt=""
+                width={767}
+                height={330}
+                loading="lazy"
+                className="aspect-[767/330] w-full rounded-lg object-cover"
+              />
+              <div className="mt-5 flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-navy font-display text-label font-semibold text-white">
+                  {i + 1}
+                </span>
+                <h3 className="font-display text-h3 font-semibold text-navy">{step.title}</h3>
+              </div>
+              <p className="mt-2 text-body text-gray-600">{step.description}</p>
+            </article>
+          ))}
+        </div>
+        <TextLink to="/process" className="mt-10">
+          See how it works
+        </TextLink>
+      </div>
+    </section>
+  )
+}
 
-        <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 sm:gap-y-12">
-          {coreValues.map((value, i) => (
-            <ScrollReveal key={value.title} delay={(i % 2) * 0.1 + Math.floor(i / 2) * 0.1}>
-              <img src={value.icon} alt="" width={112} height={112} loading="lazy" className="h-14 w-14 rounded-md" />
-              <h3 className="mt-5 font-display text-2xl font-semibold text-navy lg:text-[26px]">{value.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-gray-600">{value.description}</p>
-            </ScrollReveal>
+export function CoreValues({ showLink = true }: { showLink?: boolean } = {}) {
+  return (
+    <section id="values" aria-labelledby="values-title" className={cn('bg-white', sectionY)}>
+      <div className={cn(container, 'grid gap-12 lg:grid-cols-2 lg:gap-16')}>
+        <div>
+          <SectionHeader id="values-title" title={homeCopy.values.title} intro={homeCopy.values.intro} />
+          {showLink && (
+            <TextLink to="/about" className="mt-8">
+              More about us
+            </TextLink>
+          )}
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12">
+          {coreValues.map((value) => (
+            <div key={value.title} className="flex items-start gap-4 sm:block">
+              <img src={value.icon} alt="" width={112} height={112} loading="lazy" className="h-12 w-12 shrink-0 rounded-md sm:h-14 sm:w-14" />
+              <div>
+                <h3 className="font-display text-h3 font-semibold text-navy sm:mt-5">{value.title}</h3>
+                <p className="mt-2 text-body text-gray-600">{value.description}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -267,30 +261,13 @@ export function CoreValues() {
 export function WhyChooseUs() {
   const half = Math.ceil(whyChooseUs.length / 2)
   return (
-    <section
-      className="py-16 sm:py-24 lg:py-28"
-      style={{ background: 'linear-gradient(90deg, #0B0D12 0%, #151A24 35%, #232A3B 70%, #323D56 100%)' }}
-    >
-      <div className="mx-auto max-w-[1140px] px-6">
-        <ScrollReveal>
-          <h2 className="font-display text-[2rem] font-semibold uppercase text-white sm:text-[2.25rem] lg:text-[2.75rem]">
-            Why Choose Us?
-          </h2>
-          <p className="mt-6 max-w-5xl text-[17px] font-medium leading-relaxed text-white">
-            We provide affordable solutions that cut out pointless overhead expenses, assisting you in achieving maximum
-            effectiveness while maximizing your budget. With the help of our virtual assistants, you can be sure to
-            quickly assemble the ideal team.
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.15}>
-          <div className="mt-10 grid gap-x-12 gap-y-3 sm:mt-12 md:grid-cols-2">
-            <CheckList items={whyChooseUs.slice(0, half)} tone="light" />
-            <CheckList items={whyChooseUs.slice(half)} tone="light" />
-          </div>
-          <OutlineButton to="/services" className="mt-12">
-            Learn More
-          </OutlineButton>
-        </ScrollReveal>
+    <section id="why-us" aria-labelledby="why-us-title" className={cn(darkBand, sectionY)}>
+      <div className={container}>
+        <SectionHeader id="why-us-title" tone="dark" title={homeCopy.whyUs.title} intro={homeCopy.whyUs.intro} />
+        <div className="mt-10 grid gap-x-12 gap-y-3 md:grid-cols-2">
+          <CheckList items={whyChooseUs.slice(0, half)} tone="dark" />
+          <CheckList items={whyChooseUs.slice(half)} tone="dark" />
+        </div>
       </div>
     </section>
   )
@@ -298,105 +275,87 @@ export function WhyChooseUs() {
 
 export function Appointments() {
   const ref = useRef<HTMLDivElement>(null)
-  const load = useInView(ref, { once: true, margin: '400px 0px' })
+  const inView = useInView(ref, { once: true, margin: '400px 0px' })
+  const [canLoadEmbed, setCanLoadEmbed] = useState(false)
+
+  useEffect(() => {
+    if (!inView) return
+    setCanLoadEmbed(window.matchMedia('(min-width: 640px)').matches)
+  }, [inView])
 
   return (
-    <section id="appointments" className="bg-white py-16 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-[1140px] px-6">
-        <ScrollReveal className="text-center">
-          <Eyebrow>Appointments</Eyebrow>
-          <SectionTitle className="mx-auto max-w-3xl">Book a Free Consultation With Our Team</SectionTitle>
-        </ScrollReveal>
-        <div
-          ref={ref}
-          className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_12px_40px_-12px_rgba(52,63,90,0.18)]"
-        >
-          {load ? (
-            <iframe
-              src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=ff5400`}
-              title="Schedule an appointment with CALEBrated Virtual Services"
-              loading="lazy"
-              className="h-[720px] w-full border-0"
-            />
-          ) : (
-            <div className="flex h-[720px] items-center justify-center text-gray-500">Loading calendar...</div>
-          )}
+    <section id="appointments" aria-labelledby="appointments-title" className={cn('bg-white', sectionY)}>
+      <div className={container}>
+        <SectionHeader
+          id="appointments-title"
+          align="center"
+          eyebrow={homeCopy.appointments.eyebrow}
+          title={homeCopy.appointments.title}
+          intro={homeCopy.appointments.intro}
+        />
+
+        {/* Phones: a compact booking card. The 720px iframe is skipped below `sm` so it never loads. */}
+        <div className={cn(card, 'mt-10 text-center sm:hidden')}>
+          <ButtonLink href={CALENDLY_URL} className="w-full">
+            Book a Free Consultation
+          </ButtonLink>
+          <p className="mt-3 text-label text-gray-600">
+            Or email{' '}
+            <a href="mailto:infocalebrated@gmail.com" className="underline underline-offset-4">
+              infocalebrated@gmail.com
+            </a>
+          </p>
         </div>
-        <p className="mt-4 text-center text-sm text-gray-500">
-          Calendar not loading?{' '}
-          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-orange hover:underline">
-            Open the booking page
-          </a>
-          .
-        </p>
+
+        <div ref={ref} className="hidden sm:mt-12 sm:block">
+          <div className="overflow-hidden rounded-2xl bg-white shadow-card">
+            {canLoadEmbed ? (
+              <iframe
+                src={`${CALENDLY_URL}?hide_gdpr_banner=1&primary_color=ff5400`}
+                title="Schedule an appointment with CALEBrated Virtual Services"
+                loading="lazy"
+                className="h-[720px] w-full border-0"
+              />
+            ) : (
+              <div className="flex h-[720px] items-center justify-center text-label text-gray-600">Loading calendar...</div>
+            )}
+          </div>
+          <p className="mt-4 text-center text-label text-gray-600">
+            Calendar not loading?{' '}
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="font-medium text-orange-deep underline underline-offset-4">
+              Open the booking page
+            </a>
+            .
+          </p>
+        </div>
       </div>
     </section>
   )
 }
 
 export function ConnectWithUs() {
-  const [sent, setSent] = useState(false)
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const email = new FormData(e.currentTarget).get('email')
-    window.location.href = `mailto:infocalebrated@gmail.com?subject=${encodeURIComponent(
-      'Newsletter subscription',
-    )}&body=${encodeURIComponent(`Please subscribe ${email} to CALEBrated updates.`)}`
-    setSent(true)
-  }
-
   return (
-    <section className="overflow-hidden bg-[#FAFBFC] py-16 sm:py-24 lg:py-32">
-      <div className="mx-auto grid max-w-[1140px] items-center gap-10 px-6 sm:gap-14 lg:grid-cols-2">
-        <ScrollReveal direction="left">
-          <img
-            src="/images/home/connect.png"
-            alt="The CALEBrated team, ready to connect with you"
-            width={932}
-            height={779}
-            loading="lazy"
-            className="mx-auto w-full max-w-[520px]"
-          />
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <SectionTitle className="mt-0 lg:text-[2.25rem]">
-            Experience the CALEBrated Virtual Services advantage today
-          </SectionTitle>
-          <p className="mt-6 text-[17px] leading-relaxed text-gray-600">
-            Witness the transformation in your business. Contact us now to discuss your virtual assistance needs and
-            embark on a journey towards unparalleled efficiency and growth.
-          </p>
-          {sent ? (
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-8 font-display text-lg text-navy"
-            >
-              Thank you! Your email app should now be open with your subscription request.
-            </motion.p>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0">
-              <label htmlFor="subscribe-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="subscribe-email"
-                name="email"
-                type="email"
-                required
-                placeholder="sample@mail.com"
-                className="h-12 w-full rounded-md border sm:w-auto sm:flex-1 border-gray-200 bg-white px-4 text-[15px] text-navy placeholder:text-gray-400 focus:border-orange focus:outline-none sm:rounded-r-none"
-              />
-              <button
-                type="submit"
-                className="h-12 rounded-md bg-orange px-12 font-display text-[15px] font-medium text-white transition-colors duration-300 hover:bg-orange-deep sm:rounded-l-none"
-              >
-                Subscribe
-              </button>
-            </form>
-          )}
-        </ScrollReveal>
+    <section id="connect" aria-labelledby="connect-title" className={cn('overflow-hidden bg-offwhite', sectionY)}>
+      <div className={cn(container, 'grid items-center gap-10 lg:grid-cols-2 lg:gap-16')}>
+        <div className="order-1 lg:order-2">
+          <SectionHeader id="connect-title" title={homeCopy.connect.title} intro={homeCopy.connect.intro} />
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <ButtonLink to="/contact" variant="secondary">
+              Send Us a Message
+            </ButtonLink>
+            <TextLink href="mailto:infocalebrated@gmail.com" icon={<Mail size={16} aria-hidden="true" />}>
+              infocalebrated@gmail.com
+            </TextLink>
+          </div>
+        </div>
+        <img
+          src="/images/home/connect.png"
+          alt="The CALEBrated team, ready to connect with you"
+          width={932}
+          height={779}
+          loading="lazy"
+          className="order-2 mx-auto h-auto w-full max-w-[360px] sm:max-w-[440px] lg:order-1 lg:max-w-[520px]"
+        />
       </div>
     </section>
   )

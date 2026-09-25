@@ -1,36 +1,29 @@
 import { valueStatements } from '@/data/values'
-import { ScrollReveal } from './ScrollReveal'
+import { container, sectionY } from '@/lib/ui'
+import { cn } from '@/lib/utils'
+import { SectionHeader } from './ui/SectionHeader'
 
 export function ValueDifference() {
   return (
-    <section id="difference" className="border-t border-ink/10 bg-offwhite py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <ScrollReveal>
-          <p className="text-xs font-semibold uppercase tracking-widest2 text-orange-deep">The CALEBrated Difference</p>
-          <h2 className="mt-5 max-w-3xl font-display text-display-md font-semibold text-navy text-balance">
-            Your Business Shouldn&rsquo;t Depend on You Doing Everything.
-          </h2>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-charcoal/75">
-            Whether you need a virtual assistant for small business tasks or ongoing remote administrative support
-            for a growing team, the difference shows up in four places.
-          </p>
-        </ScrollReveal>
+    <section id="difference" aria-labelledby="difference-title" className={cn('bg-offwhite', sectionY)}>
+      <div className={container}>
+        <SectionHeader
+          id="difference-title"
+          title="What Changes When You Work With Us"
+          intro="Here's what's different once CALEBrated is part of your team."
+        />
 
-        <div className="mt-20 border-t border-ink/10">
-          {valueStatements.map((value, i) => (
-            <ScrollReveal key={value.title} delay={i * 0.08}>
-              <div className="group grid grid-cols-1 items-center gap-4 border-b border-ink/10 py-10 transition-colors duration-300 sm:grid-cols-12 sm:gap-8">
-                <span className="font-display text-sm font-semibold text-orange-deep sm:col-span-1">{value.index}</span>
-                <h3 className="font-display text-2xl font-semibold text-navy transition-transform duration-500 ease-premium group-hover:translate-x-2 sm:col-span-4 lg:text-3xl">
-                  {value.title}
-                </h3>
-                <p className="max-w-md text-base leading-relaxed text-charcoal/75 sm:col-span-7">
-                  {value.description}
-                </p>
-              </div>
-            </ScrollReveal>
+        <dl className="mt-10 border-t border-gray-200 sm:mt-12">
+          {valueStatements.map((value) => (
+            <div
+              key={value.title}
+              className="grid gap-2 border-b border-gray-200 py-6 sm:grid-cols-12 sm:gap-8 sm:py-8"
+            >
+              <dt className="font-display text-h3 font-semibold text-navy sm:col-span-4">{value.title}</dt>
+              <dd className="text-body text-gray-600 sm:col-span-8">{value.description}</dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   )

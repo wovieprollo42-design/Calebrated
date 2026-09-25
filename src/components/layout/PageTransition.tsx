@@ -1,6 +1,8 @@
 import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { EASE_PREMIUM } from '@/lib/motion'
+import { chrome } from '@/lib/ui'
+import { cn } from '@/lib/utils'
 import { PAGE_ENTER_MS, PAGE_EXIT_MS } from './transition'
 
 const curtainVariants: Variants = {
@@ -33,8 +35,10 @@ export function PageCurtain() {
     <motion.div
       aria-hidden="true"
       variants={reduceMotion ? reducedCurtainVariants : curtainVariants}
-      className="pointer-events-none fixed inset-x-0 bottom-0 top-24 z-[45] flex items-center justify-center will-change-transform"
-      style={{ background: 'linear-gradient(90deg, #161B22 0%, #1E232B 55%, #2A2F37 100%)' }}
+      className={cn(
+        'pointer-events-none fixed inset-x-0 bottom-0 top-20 z-[45] flex items-center justify-center will-change-transform lg:top-24',
+        chrome,
+      )}
     >
       <img
         src="/brand/calebrated-mark@2x.png"

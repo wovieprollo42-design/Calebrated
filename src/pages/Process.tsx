@@ -1,6 +1,7 @@
 import { FinalCTA } from '@/components/FinalCTA'
 import { Process } from '@/components/Process'
 import { PageHeader } from '@/components/ui/PageHeader'
+import { CALENDLY_URL } from '@/data/home'
 import { processJsonLd } from '@/lib/seo'
 import { usePageMeta } from '@/lib/usePageMeta'
 
@@ -8,9 +9,9 @@ const JSON_LD = processJsonLd()
 
 export default function ProcessPage() {
   usePageMeta({
-    title: 'How It Works | Hiring a Virtual Assistant with CALEBrated',
+    title: 'How It Works: Hiring a Virtual Assistant | CALEBrated',
     description:
-      'See how hiring a virtual assistant with CALEBrated works: four clear steps from discovery to ongoing business operations support that scales with your company.',
+      'Hiring a virtual assistant with CALEBrated takes four simple steps. We start with a free consultation, plan your support, get to work, and grow with you.',
     jsonLd: JSON_LD,
   })
 
@@ -18,8 +19,9 @@ export default function ProcessPage() {
     <>
       <PageHeader
         eyebrow="How It Works"
-        title="A Simple Path to Steady Virtual Business Support."
-        intro="Hiring a virtual assistant for small business owners and growing teams should feel simple. CALEBrated follows four clear steps, from the first conversation to ongoing operations support that scales with you."
+        title="Four Steps To Get Started"
+        intro="From your first call to ongoing support, in four simple steps."
+        cta={{ label: 'Book a Free Consultation', href: CALENDLY_URL }}
       />
       <Process />
       <FinalCTA />

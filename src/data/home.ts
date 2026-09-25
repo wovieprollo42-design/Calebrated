@@ -35,102 +35,143 @@ export const partnerLogoRows: PartnerLogo[][] = [
   ],
 ]
 
-export const featurePoints = [
-  'Our platform facilitates real-time collaboration.',
-  'Enabling teams to work together effortlessly.',
-  'We believe that innovation should never come at the cost of simplicity.',
-  'Achieving your goals and driving growth.',
-]
+// Copy for text that used to be hardcoded in the section components.
+// Written to brand.md's voice rules: plain English, short sentences, no banned words.
+export const homeCopy = {
+  heroParagraph:
+    'CALEBrated Virtual Services is a remote team of virtual assistants that handles your admin, marketing, and website work. We help busy business owners get more done without hiring in-house. Book a free consultation and tell us what you need.',
+  heroProof: 'Trusted by 20+ clients.',
+  clientsHeading: 'Businesses Like Yours Work With Us',
+  whatWeDo: {
+    eyebrow: 'What We Do',
+    title: 'One Team For Admin, Marketing, And Website Work',
+    intro: 'Busy owners hand us the day-to-day, and we handle it.',
+  },
+  services: {
+    title: 'Services We Handle For You',
+  },
+  websites: {
+    eyebrow: 'Websites & Automation',
+    title: 'A Website That Works Hard For You',
+    intro: 'We build websites and funnels that turn visitors into booked calls.',
+  },
+  results: {
+    title: 'Our Work So Far',
+    intro: 'A quick look at our clients, our feedback, and our team.',
+  },
+  howItWorks: {
+    title: 'What Happens After You Book',
+    intro: 'Four simple steps, from your free call to ongoing support.',
+  },
+  values: {
+    title: 'The Character Behind The Work',
+    intro: 'These four values guide how we work with every client.',
+  },
+  whyUs: {
+    title: 'Why Choose Us?',
+    intro: 'We keep things simple and flexible, so you get support without hiring in-house.',
+  },
+  appointments: {
+    eyebrow: 'Free Consultation',
+    title: 'Book A Free Consultation',
+    intro: 'Pick a time. We will talk through what you need.',
+  },
+  connect: {
+    title: 'Still Have Questions?',
+    intro: 'Send us a message, and we will get back to you.',
+  },
+}
 
-export const featureCards = [
-  {
-    image: '/images/home/card-1.jpg',
-    title: 'Real-Time Collaboration',
-    description:
-      'With Real-Time Collaboration, professionals utilizing CALEBrated Virtual Services can collaborate on projects, share ideas, and provide feedback in real-time, fostering a dynamic and efficient working environment.',
-  },
-  {
-    image: '/images/home/card-2.jpg',
-    title: 'Work Together Effortlessly',
-    description:
-      'Work Together Effortlessly is a key feature of CALEBrated Virtual Services that streamlines collaboration among team members, making it easier than ever to work together towards common goals.',
-  },
-  {
-    image: '/images/home/card-3.jpg',
-    title: 'Value Innovation',
-    description:
-      'Through Value Innovation, CALEBrated Virtual Services strives to stay ahead of the competition by continuously exploring new opportunities, technologies, and partnerships that can add significant value to the services offered.',
-  },
-  {
-    image: '/images/home/card-4.jpg',
-    title: 'Goals and Driving Growth',
-    description:
-      'Goals and Driving Growth is a core focus of CALEBrated Virtual Services, as it aims to empower businesses to define and achieve their strategic objectives, propelling them towards sustainable growth and success.',
-  },
+// Three groups, matching brand.md's message pillar 1. Each group lists 2 or 3 example services.
+export const whatWeDoPoints = [
+  { title: 'Admin & Operations', text: 'Scheduling, email, data entry, and bookkeeping.' },
+  { title: 'Marketing & Sales', text: 'Social media, email marketing, ads, and SEO.' },
+  { title: 'Websites & Automation', text: 'Websites, funnels, and GHL automation.' },
 ]
 
 export const websitePoints = [
-  'We believe in the power of individuality.',
-  'Create a visually stunning website that reflects your brand identity and captivates your target audience.',
-  'We ensure that your website stands out from the competition and leaves a lasting impression.',
-  'From small business websites to complex e-commerce platforms, we have the expertise to bring your vision to life.',
+  'A custom site that matches your brand.',
+  'Copy and pages built to turn visitors into leads.',
+  'Sites for small businesses and online stores.',
 ]
 
+// Images for the "what happens after you book" preview. Paired with processSteps in HomeSections,
+// in order, so both pages describe the same 4 steps the same way.
+export const homeStepImages = [
+  '/images/home/card-1.jpg',
+  '/images/home/card-2.jpg',
+  '/images/home/card-3.jpg',
+  '/images/home/card-4.jpg',
+]
+
+// Ordered by group (Admin & Operations, Marketing & Sales, Websites & Automation), each icon stays
+// with its own service.
 export const homeServices = [
   {
-    icon: '/images/home/service-1.png',
-    title: 'Website Development',
-    description: 'Dedicated to creating dynamic, user-friendly, and visually captivating websites that drive results.',
-  },
-  {
-    icon: '/images/home/service-2.png',
-    title: 'Graphic Design',
-    description: 'Elevate your brand with creative graphic design from CALEBrated Virtual Services.',
-  },
-  {
-    icon: '/images/home/service-3.png',
-    title: 'Social Media Management',
-    description: 'Strategic social media management that helps to unlock the full potential of your online presence.',
-  },
-  {
+    slug: 'administrative-support',
     icon: '/images/home/service-4.png',
     title: 'Administrative Support',
-    description: 'Efficient administrative support for streamlined operations with CALEBrated Virtual Services.',
+    description: 'Scheduling, email, and day-to-day tasks handled for you.',
   },
   {
-    icon: '/images/home/service-5.png',
-    title: 'Email Marketing',
-    description: 'We specialize in creating highly targeted and impactful email marketing campaigns that deliver results.',
-  },
-  {
+    slug: 'bookkeeping',
     icon: '/images/home/service-6.png',
     title: 'Bookkeeping',
-    description: 'Providing accurate, reliable, and efficient bookkeeping solutions tailored to your specific needs.',
+    description: 'Accurate books and reports, so your numbers stay current.',
   },
   {
+    slug: 'social-media-management',
+    icon: '/images/home/service-3.png',
+    title: 'Social Media Management',
+    description: 'Content and posting that keeps your pages active.',
+  },
+  {
+    slug: 'graphic-design',
+    icon: '/images/home/service-2.png',
+    title: 'Graphic Design',
+    description: 'Clean, on-brand design for your marketing and social posts.',
+  },
+  {
+    slug: 'email-marketing',
+    icon: '/images/home/service-5.png',
+    title: 'Email Marketing',
+    description: 'Campaigns that reach your list and bring people back.',
+  },
+  {
+    slug: 'paid-advertising',
     icon: '/images/home/service-7.svg',
     title: 'Paid Advertising',
-    description: 'Targeted ad campaigns on Google, Facebook, and Instagram that put your business in front of the right customers.',
+    description: 'Ads on Google, Facebook, and Instagram that reach the right people.',
   },
   {
+    slug: 'seo',
     icon: '/images/home/service-8.svg',
     title: 'Search Engine Optimization (SEO)',
-    description: 'Rank higher on Google and bring in more visitors with on-page, technical, and local SEO.',
+    description: 'Better rankings on Google, so more visitors find you.',
   },
   {
-    icon: '/images/home/service-9.svg',
-    title: 'GHL and Automation Services',
-    description: 'GoHighLevel setup and automations that capture leads, send follow-ups, and save your team hours every week.',
+    slug: 'website-development',
+    icon: '/images/home/service-1.png',
+    title: 'Website Development',
+    description: 'A website built to look good and bring in leads.',
   },
   {
-    icon: '/images/home/service-10.svg',
-    title: 'AI Chatbot & Voice AI',
-    description: 'Smart chatbots and voice agents that answer questions, qualify leads, and book appointments around the clock.',
-  },
-  {
+    slug: 'funnel-creation',
     icon: '/images/home/service-11.svg',
     title: 'Funnel Creation',
-    description: 'High-converting sales funnels that guide visitors from their first click to a booked call or a purchase.',
+    description: 'Pages that guide visitors toward a booked call or sale.',
+  },
+  {
+    slug: 'ghl-automation',
+    icon: '/images/home/service-9.svg',
+    title: 'GHL and Automation Services',
+    description: 'Automations that follow up on leads while you focus elsewhere.',
+  },
+  {
+    slug: 'ai-chatbot-voice-ai',
+    icon: '/images/home/service-10.svg',
+    title: 'AI Chatbot & Voice AI',
+    description: 'A chatbot or voice agent that answers questions any time.',
   },
 ]
 
@@ -145,43 +186,37 @@ export const coreValues = [
   {
     icon: '/images/home/value-1.png',
     title: 'Excellence',
-    description:
-      'We strive for excellence in everything we do. We are committed to delivering high-quality services, exceeding client expectations, and continuously improving our skills and knowledge.',
+    description: 'We aim for high-quality work, and we keep improving our skills so you always get our best.',
   },
   {
     icon: '/images/home/value-2.png',
     title: 'Integrity',
-    description:
-      'We believe in transparency, honesty, and ethical conduct. We maintain the highest standards of professionalism and operate with integrity in all our interactions.',
+    description: 'We are honest and transparent, and we hold ourselves to a high standard in every interaction.',
   },
   {
     icon: '/images/home/value-3.png',
     title: 'Collaboration',
-    description:
-      'We foster a collaborative environment where ideas are shared, diverse perspectives are respected, and collective efforts lead to innovative solutions.',
+    description: 'We share ideas, welcome different perspectives, and work together to find the best solution for you.',
   },
   {
     icon: '/images/home/value-4.png',
     title: 'Client Focus',
-    description:
-      "Our clients are at the center of everything we do. We are deeply committed to understanding their objectives, challenges, and priorities, placing our clients' needs first.",
+    description: 'Your goals come first. We take time to understand what you need before we start work.',
   },
 ]
 
+// Trimmed from 10 to 6: concrete reasons only, with no repeats of the values or step cards.
 export const whyChooseUs = [
-  'Wide Range of Virtual Services',
-  'Expertise in Remote Work',
-  'Flexibility and Scalability',
-  'Cost-Effective Solutions',
-  'Reliable and Trustworthy Professionals',
-  'Streamlined Communication and Collaboration',
-  'Focus on Efficiency and Productivity',
-  'Data Security and Confidentiality',
-  'Proven Track Record',
-  'Exceptional Customer Support',
+  'Wide range of services',
+  'One team instead of several freelancers',
+  'Start small and scale as you grow',
+  'Costs less than an in-house hire',
+  'A proven track record',
+  'A free call before you commit to anything',
 ]
 
 export const socialLinks = [
+  { label: 'Facebook', href: 'https://www.facebook.com/calebratedvirtualservices' },
   { label: 'Instagram', href: 'https://www.instagram.com/caleb.rated/' },
   { label: 'X (Twitter)', href: 'https://twitter.com/rated_cale4967' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/caleb-rated-937707282/' },

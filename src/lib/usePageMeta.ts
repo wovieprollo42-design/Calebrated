@@ -1,22 +1,14 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-
-export const SITE_URL = 'https://calebratedvirtualservices.com'
+import { pageUrl, type JsonLd } from '@/lib/seo'
 
 const JSON_LD_ID = 'page-jsonld'
-
-export type JsonLd = Record<string, unknown>
 
 export interface PageMetaOptions {
   title: string
   description: string
   jsonLd?: JsonLd | JsonLd[]
   noindex?: boolean
-}
-
-export function canonicalFor(pathname: string): string {
-  if (pathname === '/' || pathname === '') return `${SITE_URL}/`
-  return SITE_URL + pathname.replace(/\/+$/, '')
 }
 
 function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {
@@ -31,6 +23,10 @@ function upsertMeta(attribute: 'name' | 'property', key: string, content: string
 
 function removeMeta(attribute: 'name' | 'property', key: string) {
   document.head.querySelector(`meta[${attribute}="${key}"]`)?.remove()
+}
+
+function removeLink(rel: string) {
+  document.head.querySelector(`link[rel="${rel}"]`)?.remove()
 }
 
 function upsertLink(rel: string, href: string) {
@@ -56,21 +52,23 @@ export function usePageMeta({ title, description, jsonLd, noindex = false }: Pag
   const jsonLdString = jsonLd ? serializeJsonLd(jsonLd) : null
 
   useEffect(() => {
-    const canonical = canonicalFor(pathname)
+    const canonical = pageUrl(pathname)
 
     document.title = title
     upsertMeta('name', 'description', description)
-    upsertLink('canonical', canonical)
     upsertMeta('property', 'og:title', title)
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:url', canonical)
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)
 
+    // A noindex page (the 404) gets no canonical, so it never points search engines at a URL that does not exist.
     if (noindex) {
       upsertMeta('name', 'robots', 'noindex, follow')
+      removeLink('canonical')
     } else {
       removeMeta('name', 'robots')
+      upsertLink('canonical', canonical)
     }
   }, [title, description, pathname, noindex])
 

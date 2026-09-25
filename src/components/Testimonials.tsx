@@ -1,5 +1,6 @@
 import { Quote } from 'lucide-react'
 import { testimonialSlots, type TestimonialSlot } from '@/data/testimonials'
+import { container } from '@/lib/ui'
 import { ScrollReveal } from './ScrollReveal'
 import { SectionHeader } from './ui/SectionHeader'
 import { Marquee } from './ui/Marquee'
@@ -33,7 +34,7 @@ export function Testimonials() {
         ))}
       </Marquee>
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      <div className={container}>
         <SectionHeader eyebrow="Client Feedback" title="Trusted Support. Real Impact." tone="light" />
 
         <div className="mt-16">
@@ -49,12 +50,12 @@ export function Testimonials() {
                 >
                   <div className="flex h-full min-h-[280px] flex-col justify-between border border-ink/10 bg-offwhite p-8 transition-colors duration-300 hover:border-orange/50">
                     <Quote size={28} strokeWidth={1.25} className="text-orange/50" aria-hidden="true" />
-                    <p className="mt-8 text-sm leading-relaxed text-charcoal/75">
+                    <p className="mt-8 text-body leading-relaxed text-charcoal/75">
                       {placeholder
                         ? 'Client testimonial coming soon. This slot is reserved for a real, attributed review from a CALEBrated client.'
                         : slot.quote}
                     </p>
-                    <span className="mt-8 text-xs font-semibold uppercase tracking-widest2 text-charcoal/70">
+                    <span className="mt-8 text-label font-semibold uppercase tracking-widest text-charcoal/70">
                       {placeholder
                         ? 'Placeholder, awaiting client testimonial'
                         : [slot.name, slot.role].filter(Boolean).join(', ')}

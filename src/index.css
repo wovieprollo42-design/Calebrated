@@ -31,6 +31,14 @@ body {
   text-wrap: balance;
 }
 
+@layer utilities {
+  /* Home h1 on phones: sized to the viewport so each line fits.
+     9.45em is the longer line; 9.8 leaves a 3.5% safety margin. Capped at text-hero's 40px phone size. */
+  .text-hero-fit {
+    font-size: min(calc((100vw - 3rem) / 9.8), 2.5rem);
+  }
+}
+
 /* thin, premium scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -45,9 +53,4 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #FF5400;
-}
-
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
 }

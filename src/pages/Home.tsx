@@ -18,9 +18,9 @@ const JSON_LD = homeJsonLd()
 
 export default function Home() {
   usePageMeta({
-    title: 'Virtual Assistant Services | CALEBrated Virtual Services',
+    title: 'Virtual Assistant Services for Small Business | CALEBrated',
     description:
-      'CALEBrated gives busy business owners reliable virtual assistant support for admin work, customer service, and daily operations, so you get your time back.',
+      'CALEBrated Virtual Services is a remote team of virtual assistants who handle your admin, marketing, and website work. Book a free consultation to get started.',
     jsonLd: JSON_LD,
   })
 
@@ -29,10 +29,10 @@ export default function Home() {
       <HomeHero />
       <PartnerLogos />
       <FeaturesIntro />
-      <FeatureCards />
-      <WebsiteFeature />
       <ServiceGrid />
+      <WebsiteFeature />
       <WorldwideStats />
+      <FeatureCards />
       <CoreValues />
       <WhyChooseUs />
       <Appointments />

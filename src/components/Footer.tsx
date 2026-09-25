@@ -1,45 +1,49 @@
-import { Instagram, Linkedin, Twitter, type LucideIcon } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter, type LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CALENDLY_URL, homeServices, socialLinks } from '@/data/home'
+import { container, darkBand } from '@/lib/ui'
+import { cn } from '@/lib/utils'
 import { BrandLogo } from './BrandLogo'
 
 const SOCIAL_ICONS: Record<string, LucideIcon> = {
+  Facebook,
   Instagram,
   'X (Twitter)': Twitter,
   LinkedIn: Linkedin,
 }
 
-const INFO_LINKS = [
-  { label: 'How It Works', to: '/process' },
-  { label: 'Why CALEBrated', to: '/about#difference' },
-  { label: 'Contact Us', to: '/contact' },
-]
+const SOCIAL_ARIA_LABELS: Record<string, string> = {
+  Facebook: 'CALEBrated on Facebook',
+}
 
 const COMPANY_LINKS = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
-  { label: 'Our Process', to: '/process' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'How It Works', to: '/process' },
 ]
 
-const linkClass = 'text-base text-white/90 sm:text-[17px] transition-colors duration-300 hover:text-orange'
+const footerLinkClass =
+  'block py-2.5 font-body text-body text-white/80 transition-colors duration-200 hover:text-white hover:underline underline-offset-4'
 
 export function Footer() {
   return (
-    <footer
-      className="text-white"
-      style={{ background: 'linear-gradient(90deg, #0F131B 0%, #151A24 45%, #232A3B 100%)' }}
-    >
-      <div className="mx-auto max-w-[1140px] px-6 pb-24 pt-16 sm:pt-20 lg:pb-10 lg:pt-28">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[1.5fr_1fr_1fr_0.9fr]">
-          <div className="col-span-2 md:col-span-1">
+    <footer className={cn(darkBand, 'border-t border-white/10 text-white')}>
+      <div className={cn(container, 'pb-24 pt-16 sm:pt-20 lg:pb-10 lg:pt-24')}>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-[1.4fr_1.2fr_0.8fr_1fr] lg:gap-x-10">
+          <div className="col-span-2 lg:col-span-1">
             <Link to="/" aria-label="CALEBrated Virtual Services, home" className="inline-block">
               <BrandLogo layout="stacked" size="lg" />
             </Link>
-            <p className="mt-8 max-w-sm text-[17px] leading-relaxed text-white/90">
-              Pushing the boundaries of what&rsquo;s possible in the virtual realm.
+            <p className="mt-6 max-w-sm text-body text-white/80">
+              A remote team that handles your admin, marketing, and website work.
             </p>
-            <ul className="mt-8 flex gap-3">
+            <a
+              href="mailto:infocalebrated@gmail.com"
+              className="mt-4 inline-flex min-h-11 items-center text-white underline underline-offset-4"
+            >
+              infocalebrated@gmail.com
+            </a>
+            <ul className="mt-6 flex gap-3">
               {socialLinks.map((social) => {
                 const Icon = SOCIAL_ICONS[social.label]
                 return (
@@ -48,10 +52,10 @@ export function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="flex h-9 w-9 items-center justify-center rounded border border-white/60 text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-orange hover:bg-orange"
+                      aria-label={`${SOCIAL_ARIA_LABELS[social.label] ?? social.label} (opens in a new tab)`}
+                      className="flex h-11 w-11 items-center justify-center rounded-md border border-white/30 text-white transition-colors duration-200 hover:bg-white hover:text-ink"
                     >
-                      <Icon size={16} />
+                      <Icon size={18} aria-hidden="true" />
                     </a>
                   </li>
                 )
@@ -59,12 +63,12 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-1">
-            <h2 className="font-display text-xl font-medium">Services</h2>
-            <ul className="mt-4 space-y-2">
+          <div className="col-span-2 lg:col-span-1">
+            <h2 className="font-display text-h4 font-semibold text-white">Services</h2>
+            <ul className="mt-3">
               {homeServices.map((service) => (
                 <li key={service.title}>
-                  <Link to="/services" className={linkClass}>
+                  <Link to={`/services#${service.slug}`} className={footerLinkClass}>
                     {service.title}
                   </Link>
                 </li>
@@ -73,45 +77,38 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="font-display text-xl font-medium">Info</h2>
-            <ul className="mt-4 space-y-2">
-              {INFO_LINKS.map((link) => (
+            <h2 className="font-display text-h4 font-semibold text-white">Company</h2>
+            <ul className="mt-3">
+              {COMPANY_LINKS.map((link) => (
                 <li key={link.label}>
-                  <Link to={link.to} className={linkClass}>
+                  <Link to={link.to} className={footerLinkClass}>
                     {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                  Book an Appointment
-                </a>
-              </li>
-              <li>
-                <a href="mailto:infocalebrated@gmail.com" className={linkClass}>
-                  infocalebrated@gmail.com
-                </a>
-              </li>
             </ul>
           </div>
 
           <div>
-            <h2 className="font-display text-xl font-medium">Company</h2>
-            <ul className="mt-4 space-y-2">
-              {COMPANY_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link to={link.to} className={linkClass}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <h2 className="font-display text-h4 font-semibold text-white">Get In Touch</h2>
+            <ul className="mt-3">
+              <li>
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={footerLinkClass}>
+                  Book a Free Consultation
+                </a>
+              </li>
+              <li>
+                <Link to="/contact" className={footerLinkClass}>
+                  Send Us a Message
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/15 pt-8 text-center sm:mt-16 sm:pt-10">
-          <p className="text-[15px] text-white/90">
-            Copyright &copy; {new Date().getFullYear()} All Rights Reserved. CALEBrated Virtual Services
+        <div className="mt-12 border-t border-white/10 pt-8 text-center sm:mt-16">
+          <p className="text-label text-white/70">
+            &copy; {new Date().getFullYear()} CALEBrated Virtual Services. All rights reserved.
           </p>
         </div>
       </div>

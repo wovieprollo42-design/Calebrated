@@ -5,16 +5,16 @@ export default function NotFound() {
   usePageMeta({
     title: 'Page Not Found | CALEBrated Virtual Services',
     description:
-      'The page you requested could not be found. Return to the CALEBrated Virtual Services homepage for virtual assistant and business support services.',
+      'We could not find this page. Go back to the CALEBrated home page to see our services, or book a free consultation to talk about what you need.',
     noindex: true,
   })
 
   return (
     <PageHeader
       eyebrow="404"
-      title="This page doesn’t exist, but our virtual assistant services do."
-      intro="The link may be outdated or the page may have moved. Head back home to explore our virtual business support services."
-      cta={{ label: 'Back to Home', to: '/' }}
+      title="Page Not Found"
+      intro="The page may have moved. Let's get you back home."
+      cta={{ label: 'Back to Home', to: '/', variant: 'secondary' }}
     />
   )
 }

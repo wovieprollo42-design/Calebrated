@@ -1,5 +1,10 @@
+import { socialLinks } from '@/data/home'
 import { processSteps } from '@/data/process'
-import { services } from '@/data/services'
+import { serviceGroups, services } from '@/data/services'
+
+// Structured data for every page. Facts only: everything here comes from docs/improve/brief.md.
+// Do not add an address, prices, ratings, reviews, founding date, or area served until the owner
+// confirms them (see docs/improve/seo.md, "Add later").
 
 export type JsonLd = Record<string, unknown>
 
@@ -8,14 +13,37 @@ export const SITE_NAME = 'CALEBrated Virtual Services'
 export const CONTACT_EMAIL = 'infocalebrated@gmail.com'
 
 const SCHEMA_CONTEXT = 'https://schema.org'
+const ORGANIZATION_ID = `${SITE_URL}/#organization`
+const WEBSITE_ID = `${SITE_URL}/#website`
+const LOGO_URL = `${SITE_URL}/brand/icon-512.png`
 
+const ORGANIZATION_DESCRIPTION =
+  'CALEBrated Virtual Services is a remote team of virtual assistants and specialists. We handle admin, marketing, and website work for busy business owners, so they can get more done without hiring in-house.'
+
+// Facebook, Instagram, X, and LinkedIn, straight from the footer links.
+const SAME_AS = socialLinks.map((link) => link.href)
+
+// Keep this node in step with the static Organization JSON-LD in index.html (same @id, same values).
 export const ORGANIZATION: JsonLd = {
   '@type': 'Organization',
+  '@id': ORGANIZATION_ID,
   name: SITE_NAME,
+  alternateName: 'CALEBrated',
   url: `${SITE_URL}/`,
-  logo: `${SITE_URL}/brand/icon-512.png`,
+  logo: LOGO_URL,
   email: CONTACT_EMAIL,
+  description: ORGANIZATION_DESCRIPTION,
+  sameAs: SAME_AS,
+  knowsAbout: services.map((service) => service.title),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: CONTACT_EMAIL,
+    contactType: 'customer service',
+    availableLanguage: 'English',
+  },
 }
+
+const ORGANIZATION_REF: JsonLd = { '@id': ORGANIZATION_ID }
 
 export function pageUrl(pathname: string): string {
   if (pathname === '/' || pathname === '') return `${SITE_URL}/`
@@ -33,25 +61,59 @@ export function breadcrumb(pathname: string, name: string): JsonLd {
   }
 }
 
+// Every service on the Services page, in its three groups, each linked to its own anchor.
+function serviceCatalog(): JsonLd {
+  return {
+    '@type': 'OfferCatalog',
+    name: 'Services from CALEBrated Virtual Services',
+    itemListElement: serviceGroups.map((group) => ({
+      '@type': 'OfferCatalog',
+      name: group.name,
+      description: group.intro,
+      itemListElement: group.services.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+          url: `${pageUrl('/services')}#${service.slug}`,
+          provider: ORGANIZATION_REF,
+        },
+      })),
+    })),
+  }
+}
+
+function webPage(type: string, pathname: string, name: string, description: string): JsonLd {
+  return {
+    '@context': SCHEMA_CONTEXT,
+    '@type': type,
+    '@id': `${pageUrl(pathname)}#webpage`,
+    url: pageUrl(pathname),
+    name,
+    description,
+    inLanguage: 'en',
+    isPartOf: { '@id': WEBSITE_ID },
+    about: ORGANIZATION_REF,
+  }
+}
+
 export function homeJsonLd(): JsonLd[] {
   return [
     {
       '@context': SCHEMA_CONTEXT,
       '@type': 'WebSite',
+      '@id': WEBSITE_ID,
       name: SITE_NAME,
+      alternateName: 'CALEBrated',
       url: pageUrl('/'),
+      inLanguage: 'en',
+      publisher: ORGANIZATION_REF,
     },
     {
       '@context': SCHEMA_CONTEXT,
-      '@type': 'ProfessionalService',
-      name: SITE_NAME,
-      url: pageUrl('/'),
-      email: CONTACT_EMAIL,
-      logo: `${SITE_URL}/brand/icon-512.png`,
-      description:
-        'CALEBrated Virtual Services provides virtual assistant services and remote administrative support for small businesses and growing teams, covering administrative work, customer service, social media, data entry, calendar and email management, lead generation, CRM support, and research and reporting.',
-      areaServed: 'Worldwide',
-      serviceType: services.map((service) => service.title),
+      ...ORGANIZATION,
+      hasOfferCatalog: serviceCatalog(),
     },
   ]
 }
@@ -59,12 +121,12 @@ export function homeJsonLd(): JsonLd[] {
 export function aboutJsonLd(): JsonLd[] {
   return [
     {
-      '@context': SCHEMA_CONTEXT,
-      '@type': 'AboutPage',
-      name: 'About CALEBrated Virtual Services',
-      url: pageUrl('/about'),
-      description:
-        'CALEBrated Virtual Services is a virtual business support partner that gives owners and teams dependable remote administrative support without adding headcount.',
+      ...webPage(
+        'AboutPage',
+        '/about',
+        'About CALEBrated Virtual Services',
+        'CALEBrated Virtual Services is a remote team of virtual assistants that helps busy business owners get more done without hiring in-house.',
+      ),
       mainEntity: ORGANIZATION,
     },
     breadcrumb('/about', 'About'),
@@ -76,25 +138,13 @@ export function servicesJsonLd(): JsonLd[] {
     {
       '@context': SCHEMA_CONTEXT,
       '@type': 'Service',
-      name: 'Virtual Assistant Services',
+      name: 'Virtual assistant, marketing, and website services',
       serviceType: 'Virtual assistant services',
       url: pageUrl('/services'),
-      provider: ORGANIZATION,
-      areaServed: 'Worldwide',
+      provider: ORGANIZATION_REF,
       description:
-        'Virtual assistant services from CALEBrated covering remote administrative support, outsourced customer service, social media support, data entry and management, calendar and email management, lead generation support, CRM support, and research and reporting.',
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'CALEBrated Virtual Assistant Services',
-        itemListElement: services.map((service) => ({
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: service.title,
-            description: service.description,
-          },
-        })),
-      },
+        'One remote team for admin and operations, marketing and growth, and websites and automation. This covers admin support, bookkeeping, social media, email marketing, paid advertising, SEO, websites, funnels, GHL automation, and AI chatbots and voice AI.',
+      hasOfferCatalog: serviceCatalog(),
     },
     breadcrumb('/services', 'Services'),
   ]
@@ -105,9 +155,10 @@ export function processJsonLd(): JsonLd[] {
     {
       '@context': SCHEMA_CONTEXT,
       '@type': 'HowTo',
-      name: 'How to Hire a Virtual Assistant with CALEBrated',
+      name: 'How to get started with CALEBrated Virtual Services',
       description:
-        'Hiring a virtual assistant with CALEBrated Virtual Services follows four steps, from discovery and support design to integration and ongoing business operations support.',
+        'Getting help from CALEBrated takes four steps. It starts with a free consultation call, then a support plan, then your team gets to work, and your support grows with your business.',
+      url: pageUrl('/process'),
       step: processSteps.map((step, i) => ({
         '@type': 'HowToStep',
         position: i + 1,
@@ -115,28 +166,20 @@ export function processJsonLd(): JsonLd[] {
         text: step.description,
       })),
     },
-    breadcrumb('/process', 'Process'),
+    breadcrumb('/process', 'How It Works'),
   ]
 }
 
 export function contactJsonLd(): JsonLd[] {
   return [
     {
-      '@context': SCHEMA_CONTEXT,
-      '@type': 'ContactPage',
-      name: 'Contact CALEBrated Virtual Services',
-      url: pageUrl('/contact'),
-      description:
-        'Contact CALEBrated Virtual Services to book a free consultation and find the right virtual business support for your operations.',
-      mainEntity: {
-        ...ORGANIZATION,
-        contactPoint: {
-          '@type': 'ContactPoint',
-          email: CONTACT_EMAIL,
-          contactType: 'customer service',
-          availableLanguage: 'English',
-        },
-      },
+      ...webPage(
+        'ContactPage',
+        '/contact',
+        'Contact CALEBrated Virtual Services',
+        'Book a free consultation with CALEBrated Virtual Services, or send a message about your business.',
+      ),
+      mainEntity: ORGANIZATION,
     },
     breadcrumb('/contact', 'Contact'),
   ]

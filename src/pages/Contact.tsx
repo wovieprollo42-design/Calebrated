@@ -7,9 +7,9 @@ const JSON_LD = contactJsonLd()
 
 export default function ContactPage() {
   usePageMeta({
-    title: 'Contact CALEBrated | Book a Free Virtual Support Consultation',
+    title: 'Contact Us or Book a Free Consultation | CALEBrated',
     description:
-      'Contact CALEBrated Virtual Services to book a free consultation. Tell us where you need virtual business support and get a clear next step within one day.',
+      'Book a free consultation with CALEBrated Virtual Services, or send us a message about your business. Tell us what you need, and we will get back to you.',
     jsonLd: JSON_LD,
   })
 
@@ -17,8 +17,8 @@ export default function ContactPage() {
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Tell Us Where Your Operations Need Virtual Business Support."
-        intro="Share a few details about your operations and the virtual assistant services you are considering. We reply within one business day with a clear next step."
+        title="Let's Talk About Your Business"
+        intro="Send a message about your business, or book a free call below."
       />
       <Contact />
     </>

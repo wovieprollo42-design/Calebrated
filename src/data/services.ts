@@ -1,92 +1,127 @@
-export interface Service {
-  index: string
+export interface ServiceItem {
+  slug: string
   title: string
   description: string
 }
 
-export const services: Service[] = [
+export interface ServiceGroup {
+  id: string
+  name: string
+  intro: string
+  services: ServiceItem[]
+}
+
+// The one master service list (structure.md section 3), 17 services in 3 groups.
+// The Services page and the contact form's service picker both read from this.
+export const serviceGroups: ServiceGroup[] = [
   {
-    index: '01',
-    title: 'Administrative Support',
-    description:
-      'Day-to-day remote administrative support handled with precision, from document prep and scheduling to inbox triage and the operational upkeep that keeps a business running smoothly.',
+    id: 'admin-operations',
+    name: 'Admin & Operations',
+    intro: 'The recurring work that keeps your business running.',
+    services: [
+      {
+        slug: 'administrative-support',
+        title: 'Administrative Support',
+        description: 'Day-to-day admin work, from scheduling and document prep to inbox management, handled with care.',
+      },
+      {
+        slug: 'calendar-email-management',
+        title: 'Calendar & Email Management',
+        description: 'A calendar that protects your time and an inbox that stays under control.',
+      },
+      {
+        slug: 'customer-service',
+        title: 'Customer Service',
+        description: 'Friendly, on-brand customer service across email, chat, and phone, so every message gets a reply.',
+      },
+      {
+        slug: 'data-entry',
+        title: 'Data Entry & Management',
+        description: 'Clean, accurate data entry, so your records and systems stay reliable as you grow.',
+      },
+      {
+        slug: 'bookkeeping',
+        title: 'Bookkeeping',
+        description: 'Accurate books and clear reports, so you always know where your business stands.',
+      },
+      {
+        slug: 'crm-support',
+        title: 'CRM Support',
+        description: 'Your CRM kept current, with records updated and pipelines you can trust.',
+      },
+      {
+        slug: 'research-reporting',
+        title: 'Research & Reporting',
+        description: 'Research and reports that turn information into decisions you can act on.',
+      },
+    ],
   },
   {
-    index: '02',
-    title: 'Customer Service',
-    description:
-      'Responsive, on-brand outsourced customer service across every touchpoint, so each inquiry is handled with the same care you would give it yourself.',
+    id: 'marketing-growth',
+    name: 'Marketing & Sales',
+    intro: 'Getting your business in front of the right people.',
+    services: [
+      {
+        slug: 'social-media-management',
+        title: 'Social Media Management',
+        description: 'Content, scheduling, and community replies that keep your pages active and on-brand.',
+      },
+      {
+        slug: 'graphic-design',
+        title: 'Graphic Design',
+        description: 'Clean, on-brand design for your website, social posts, and marketing materials.',
+      },
+      {
+        slug: 'email-marketing',
+        title: 'Email Marketing',
+        description: 'Email campaigns and automated sequences that bring customers back and keep leads warm.',
+      },
+      {
+        slug: 'paid-advertising',
+        title: 'Paid Advertising',
+        description: 'Ad campaigns on Google, Facebook, and Instagram, set up and managed to reach the right customers.',
+      },
+      {
+        slug: 'seo',
+        title: 'Search Engine Optimization (SEO)',
+        description: 'On-page and local SEO that helps your business rank higher and bring in steady traffic.',
+      },
+      {
+        slug: 'lead-generation',
+        title: 'Lead Generation',
+        description: 'Research-driven prospecting that keeps new leads coming into your pipeline.',
+      },
+    ],
   },
   {
-    index: '03',
-    title: 'Social Media Support',
-    description:
-      'Content scheduling, community management, and platform upkeep that keeps your presence consistent without consuming your week.',
-  },
-  {
-    index: '04',
-    title: 'Data Entry & Management',
-    description:
-      'Clean, accurate data entry and management, with records entered, maintained, and structured so your systems stay trustworthy as you scale.',
-  },
-  {
-    index: '05',
-    title: 'Calendar & Email Management',
-    description:
-      'A calendar that protects your time and an inbox that stays under control, managed with judgment on what actually needs your attention.',
-  },
-  {
-    index: '06',
-    title: 'Lead Generation',
-    description:
-      'Research-driven prospecting and lead generation support that keeps your pipeline moving without pulling you away from closing.',
-  },
-  {
-    index: '07',
-    title: 'CRM Support',
-    description:
-      'Your CRM kept current and useful, with records updated, pipelines maintained, and reporting you can actually rely on.',
-  },
-  {
-    index: '08',
-    title: 'Research & Reporting',
-    description:
-      'Focused research and reporting that turns raw information into something you can act on quickly.',
-  },
-  {
-    index: '09',
-    title: 'Paid Advertising',
-    description:
-      'Targeted ad campaigns on Google, Facebook, and Instagram, set up, managed, and tracked so every dollar reaches the right customers.',
-  },
-  {
-    index: '10',
-    title: 'Search Engine Optimization (SEO)',
-    description:
-      'On-page, technical, and local SEO that helps your business rank higher on Google and bring in steady organic traffic.',
-  },
-  {
-    index: '11',
-    title: 'GHL and Automation Services',
-    description:
-      'GoHighLevel setup, pipelines, and automations that capture leads, send follow-ups, and remove repetitive work from your week.',
-  },
-  {
-    index: '12',
-    title: 'AI Chatbot & Voice AI',
-    description:
-      'AI chatbots and voice agents that answer questions, qualify leads, and book appointments for you around the clock.',
-  },
-  {
-    index: '13',
-    title: 'Email Marketing',
-    description:
-      'Email campaigns and automated sequences that nurture leads, bring customers back, and keep your brand top of mind.',
-  },
-  {
-    index: '14',
-    title: 'Funnel Creation',
-    description:
-      'Sales funnels and landing pages that guide visitors from their first click to a booked call or a purchase.',
+    id: 'websites-automation',
+    name: 'Websites & Automation',
+    intro: 'The tools that work for you around the clock.',
+    services: [
+      {
+        slug: 'website-development',
+        title: 'Website Development',
+        description: 'A custom website built to look good and turn visitors into leads.',
+      },
+      {
+        slug: 'funnel-creation',
+        title: 'Funnel Creation',
+        description: 'Landing pages and funnels that guide visitors toward a booked call or a sale.',
+      },
+      {
+        slug: 'ghl-automation',
+        title: 'GHL and Automation Services',
+        description: 'GoHighLevel setup and automations that follow up on leads while you focus elsewhere.',
+      },
+      {
+        slug: 'ai-chatbot-voice-ai',
+        title: 'AI Chatbot & Voice AI',
+        description: 'A chatbot or voice agent that answers questions and books appointments any time.',
+      },
+    ],
   },
 ]
+
+// Flat list, in group order. Used by src/lib/seo.ts (JSON-LD) and the contact form's
+// grouped <optgroup> options.
+export const services: ServiceItem[] = serviceGroups.flatMap((group) => group.services)

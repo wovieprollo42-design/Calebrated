@@ -5,32 +5,47 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/brand/icon-192.png" />
     <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Virtual Assistant Services | CALEBrated Virtual Services</title>
+    <!-- Defaults for the home page and for crawlers that do not run JavaScript.
+         Each page sets its own title, description, canonical, and social text in usePageMeta. -->
+    <title>Virtual Assistant Services for Small Business | CALEBrated</title>
     <meta
       name="description"
-      content="CALEBrated gives busy business owners reliable virtual assistant support for admin work, customer service, and daily operations, so you get your time back."
+      content="CALEBrated Virtual Services is a remote team of virtual assistants who handle your admin, marketing, and website work. Book a free consultation to get started."
     />
     <link rel="canonical" href="https://calebratedvirtualservices.com/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="CALEBrated Virtual Services" />
-    <meta property="og:title" content="Virtual Assistant Services | CALEBrated Virtual Services" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Virtual Assistant Services for Small Business | CALEBrated" />
     <meta
       property="og:description"
-      content="CALEBrated gives busy business owners reliable virtual assistant support for admin work, customer service, and daily operations, so you get your time back."
+      content="CALEBrated Virtual Services is a remote team of virtual assistants who handle your admin, marketing, and website work. Book a free consultation to get started."
     />
     <meta property="og:url" content="https://calebratedvirtualservices.com/" />
-    <meta property="og:image" content="https://calebratedvirtualservices.com/og-image.png" />
+    <meta property="og:image" content="https://calebratedvirtualservices.com/og-card.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="CALEBrated Virtual Services. Are You Ready To Defy Your Limits? A remote team for your admin, marketing, and website work."
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Virtual Assistant Services | CALEBrated Virtual Services" />
+    <meta name="twitter:title" content="Virtual Assistant Services for Small Business | CALEBrated" />
     <meta
       name="twitter:description"
-      content="CALEBrated gives busy business owners reliable virtual assistant support for admin work, customer service, and daily operations, so you get your time back."
+      content="CALEBrated Virtual Services is a remote team of virtual assistants who handle your admin, marketing, and website work. Book a free consultation to get started."
     />
-    <meta name="twitter:image" content="https://calebratedvirtualservices.com/og-image.png" />
+    <meta name="twitter:image" content="https://calebratedvirtualservices.com/og-card.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="CALEBrated Virtual Services. Are You Ready To Defy Your Limits? A remote team for your admin, marketing, and website work."
+    />
 
     <meta name="theme-color" content="#0F131B" />
 
@@ -41,21 +56,93 @@
       rel="stylesheet"
     />
 
+    <!-- Keep in step with ORGANIZATION in src/lib/seo.ts (same @id, same values). Facts only. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "CALEBrated Virtual Services",
-        "url": "https://calebratedvirtualservices.com/",
-        "logo": "https://calebratedvirtualservices.com/brand/icon-512.png",
-        "email": "infocalebrated@gmail.com",
-        "description": "CALEBrated gives busy business owners reliable virtual assistant support for admin work, customer service, and daily operations.",
-        "sameAs": []
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://calebratedvirtualservices.com/#organization",
+            "name": "CALEBrated Virtual Services",
+            "alternateName": "CALEBrated",
+            "url": "https://calebratedvirtualservices.com/",
+            "logo": "https://calebratedvirtualservices.com/brand/icon-512.png",
+            "email": "infocalebrated@gmail.com",
+            "description": "CALEBrated Virtual Services is a remote team of virtual assistants and specialists. We handle admin, marketing, and website work for busy business owners, so they can get more done without hiring in-house.",
+            "sameAs": [
+              "https://www.facebook.com/calebratedvirtualservices",
+              "https://www.instagram.com/caleb.rated/",
+              "https://twitter.com/rated_cale4967",
+              "https://www.linkedin.com/in/caleb-rated-937707282/"
+            ],
+            "knowsAbout": [
+              "Administrative Support",
+              "Calendar & Email Management",
+              "Customer Service",
+              "Data Entry & Management",
+              "Bookkeeping",
+              "CRM Support",
+              "Research & Reporting",
+              "Social Media Management",
+              "Graphic Design",
+              "Email Marketing",
+              "Paid Advertising",
+              "Search Engine Optimization (SEO)",
+              "Lead Generation",
+              "Website Development",
+              "Funnel Creation",
+              "GHL and Automation Services",
+              "AI Chatbot & Voice AI"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "infocalebrated@gmail.com",
+              "contactType": "customer service",
+              "availableLanguage": "English"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://calebratedvirtualservices.com/#website",
+            "name": "CALEBrated Virtual Services",
+            "alternateName": "CALEBrated",
+            "url": "https://calebratedvirtualservices.com/",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://calebratedvirtualservices.com/#organization" }
+          }
+        ]
       }
     </script>
   </head>
   <body class="bg-ink text-offwhite font-body antialiased">
     <div id="root"></div>
+    <!-- Shown only when JavaScript is off, so crawlers that do not run it still get the basics. -->
+    <noscript>
+      <div style="max-width: 640px; margin: 0 auto; padding: 48px 24px; line-height: 1.6">
+        <h1>CALEBrated Virtual Services</h1>
+        <p>
+          We are a remote team of virtual assistants who handle your admin, marketing, and website work. Busy
+          business owners get more done without hiring in-house.
+        </p>
+        <p>
+          Our services cover admin and operations, marketing and growth, and websites and automation. That includes
+          administrative support, bookkeeping, customer service, social media management, email marketing, paid
+          advertising, SEO, website development, funnel creation, GHL and automation services, and AI chatbot and
+          voice AI.
+        </p>
+        <p>
+          <a href="https://calendly.com/infocalebrated" style="color: #ff5400">Book a free consultation</a>
+          or email <a href="mailto:infocalebrated@gmail.com" style="color: #ff5400">infocalebrated@gmail.com</a>.
+        </p>
+        <ul>
+          <li><a href="/services" style="color: #ffffff">Our services</a></li>
+          <li><a href="/process" style="color: #ffffff">How it works</a></li>
+          <li><a href="/about" style="color: #ffffff">About us</a></li>
+          <li><a href="/contact" style="color: #ffffff">Contact us</a></li>
+        </ul>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
