@@ -44,15 +44,7 @@ export function HomeHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE_PREMIUM }}
         >
-          <p className="hidden font-display font-bold leading-none tracking-tight sm:block">
-            <span className="text-3xl text-orange sm:text-4xl">CALEB</span>
-            <span className="text-3xl text-white sm:text-4xl">rated</span>
-            <span className="mt-1 block text-[10px] font-medium uppercase tracking-[0.34em] text-white/80">
-              Virtual Services
-            </span>
-          </p>
-
-          <h1 className="font-display text-hero font-bold uppercase text-white max-sm:text-hero-fit sm:mt-10">
+          <h1 className="font-display text-hero font-bold uppercase text-white max-sm:text-hero-fit">
             <span className="block">Are You Ready To</span>{' '}
             <span className="block text-orange">Defy Your Limits?</span>
           </h1>
