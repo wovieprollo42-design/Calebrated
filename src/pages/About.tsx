@@ -22,6 +22,8 @@ export default function AboutPage() {
         eyebrow="About Us"
         title="Meet Your Remote Team"
         intro="A remote team of virtual assistants who handle your admin, marketing, and website work."
+        image="/images/pages/about.jpg"
+        imagePosition="object-[68%_center]"
       />
       <PartnerLogos />
       <About />

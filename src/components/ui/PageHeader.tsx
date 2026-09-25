@@ -19,10 +19,23 @@ interface PageHeaderProps {
   cta?: PageHeaderCta
   /** Optional right-hand column on desktop, stacked under the text on phones (the Contact form uses it). */
   aside?: ReactNode
+  /** Background photo. Defaults to the home hero image. */
+  image?: string
+  /** Tailwind object-position class for the background photo. */
+  imagePosition?: string
 }
 
-export function PageHeader({ eyebrow, title, intro, cta, aside }: PageHeaderProps) {
+export function PageHeader({
+  eyebrow,
+  title,
+  intro,
+  cta,
+  aside,
+  image = '/images/home/hero.jpg',
+  imagePosition = 'object-[75%_center]',
+}: PageHeaderProps) {
   const reduceMotion = useReducedMotion()
+  const isDefaultImage = image === '/images/home/hero.jpg'
 
   return (
     <section
@@ -32,11 +45,11 @@ export function PageHeader({ eyebrow, title, intro, cta, aside }: PageHeaderProp
       )}
     >
       <img
-        src="/images/home/hero.jpg"
+        src={image}
         alt=""
-        width={1908}
-        height={894}
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-[75%_center]"
+        width={isDefaultImage ? 1908 : 1920}
+        height={isDefaultImage ? 894 : 1080}
+        className={cn('absolute inset-0 -z-10 h-full w-full object-cover', imagePosition)}
       />
       <div
         aria-hidden="true"

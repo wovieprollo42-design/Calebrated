@@ -22,6 +22,7 @@ export default function ProcessPage() {
         title="Four Steps To Get Started"
         intro="From your first call to ongoing support, in four simple steps."
         cta={{ label: 'Book a Free Consultation', href: CALENDLY_URL }}
+        image="/images/pages/process.jpg"
       />
       <Process />
       <FinalCTA />

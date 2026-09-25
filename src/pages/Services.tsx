@@ -23,6 +23,8 @@ export default function ServicesPage() {
         title="All Our Services In One Place"
         intro="Admin & Operations, Marketing & Sales, and Websites & Automation, all from one team."
         cta={{ label: 'Book a Free Consultation', href: CALENDLY_URL }}
+        image="/images/pages/services.jpg"
+        imagePosition="object-[60%_center]"
       />
       <Services />
       <Testimonials />

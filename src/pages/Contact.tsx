@@ -20,6 +20,8 @@ export default function ContactPage() {
         title="Let's Talk About Your Business"
         intro="Tell us about your business and what you need. We will get back to you."
         aside={<ContactForm />}
+        image="/images/pages/contact.jpg"
+        imagePosition="object-[38%_center]"
       />
       <ContactOptions />
     </>
